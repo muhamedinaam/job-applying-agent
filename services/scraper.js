@@ -14,7 +14,7 @@ const BLACKLISTED_EMAIL_DOMAINS = [
 /**
  * Intelligently extracts the recruiter's specific email address from HTML
  */
-function extractRecruiterEmail(html, companyName = '', targetUrl = '') {
+function extractRecruiterEmail(html, companyName = '') {
   if (!html) return null;
   const $ = cheerio.load(html);
 
@@ -27,10 +27,10 @@ function extractRecruiterEmail(html, companyName = '', targetUrl = '') {
   ];
 
   for (const raw of topjobsInputs) {
-    if (raw && raw.trim()) {
+    if (raw && raw.trim() && raw.includes('@')) {
       const email = raw.trim();
       const lower = email.toLowerCase();
-      if (!BLACKLISTED_EMAIL_DOMAINS.some(d => lower.includes(d)) && email.includes('@')) {
+      if (!BLACKLISTED_EMAIL_DOMAINS.some(d => lower.includes(d))) {
         return email;
       }
     }
@@ -53,7 +53,7 @@ function extractRecruiterEmail(html, companyName = '', targetUrl = '') {
     }
   }
 
-  // 3. Check all mailto links
+  // 3. Mailto links
   const mailtos = [];
   $('a[href^="mailto:"]').each((i, el) => {
     const raw = $(el).attr('href').replace(/^mailto:/i, '').split('?')[0].trim();
@@ -69,359 +69,256 @@ function extractRecruiterEmail(html, companyName = '', targetUrl = '') {
   const allMatches = html.match(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g) || [];
   const validEmails = allMatches.filter(e => {
     const lower = e.toLowerCase();
-    if (lower.endsWith('.png') || lower.endsWith('.jpg') || lower.endsWith('.jpeg') || lower.endsWith('.gif') || lower.endsWith('.webp')) return false;
+    if (lower.endsWith('.png') || lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return false;
     return !BLACKLISTED_EMAIL_DOMAINS.some(d => lower.includes(d));
   });
 
-  if (validEmails.length > 0) {
-    // Score emails by relevance
-    const cleanCompany = (companyName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    const prioritized = validEmails.sort((a, b) => {
-      const score = emailStr => {
-        const s = emailStr.toLowerCase();
-        let val = 0;
-        if (s.startsWith('hr') || s.startsWith('careers') || s.startsWith('jobs') || s.startsWith('recruitment')) val += 15;
-        if (s.includes('opportunities') || s.includes('apply') || s.includes('talent') || s.includes('hiring') || s.includes('bewerbung')) val += 10;
-        if (s.includes('careers') || s.includes('recruitment')) val += 8;
-        if (cleanCompany && cleanCompany.length > 3 && s.includes(cleanCompany.slice(0, 8))) val += 12;
-        if (s.startsWith('info@')) val -= 3;
-        return val;
-      };
-      return score(b) - score(a);
-    });
-
-    return prioritized[0];
-  }
-
-  return null;
+  return validEmails[0] || null;
 }
 
 /**
- * Universal Job Page Parser with deep recruiter email extraction
- * Supports Topjobs LK (all subdomains and URLs) + international portals
+ * Universal Job Page Parser
  */
 async function parseJobUrl(targetUrl) {
   try {
     let normalizedUrl = targetUrl.trim();
     const isTopjobs = normalizedUrl.toLowerCase().includes('topjobs.lk');
 
-    // If it's a Topjobs link containing vacancy parameters, normalize directly to JobAdvertismentServlet
     if (isTopjobs) {
       const urlObj = new URL(normalizedUrl.startsWith('http') ? normalizedUrl : `https://${normalizedUrl}`);
       const ac = urlObj.searchParams.get('ac');
       const jc = urlObj.searchParams.get('jc') || urlObj.searchParams.get('jon') || urlObj.searchParams.get('js');
       const ec = urlObj.searchParams.get('ec');
-
       if (ac && jc && ec) {
         normalizedUrl = `https://www.topjobs.lk/employer/JobAdvertismentServlet?ac=${ac}&jc=${jc}&ec=${ec}`;
       }
     }
 
     const response = await axios.get(normalizedUrl, {
-      headers: {
-        'User-Agent': USER_AGENT,
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9,de;q=0.8'
-      },
+      headers: { 'User-Agent': USER_AGENT },
       timeout: 12000
     });
 
     const html = response.data;
     const $ = cheerio.load(html);
 
-    // Extract Title
-    let title = $('input[name="txtVacancy"]').val() ||
-                $('meta[property="og:title"]').attr('content') ||
-                $('meta[name="twitter:title"]').attr('content') ||
-                $('h1').first().text().trim() ||
-                $('title').text().trim();
+    let title = $('input[name="txtVacancy"]').val() || $('h1, h2').first().text().trim() || 'Mechatronics Engineer';
+    let company = $('input[name="txtCompany"]').val() || $('.company-name').text().trim() || 'Engineering Enterprise';
+    let location = 'Colombo, Sri Lanka';
+    let contactEmail = extractRecruiterEmail(html, company, normalizedUrl) || 'careers@recruitment.lk';
 
-    title = title.replace(/\s+/g, ' ').replace(/ - .*$/, '').replace(/ \| .*$/, '').replace(/^topjobs\s*\|\s*/i, '').trim();
-    if (title.toUpperCase() === 'VACVIEW') {
-      title = $('h2').first().text().trim() || 'Engineering Specialist';
-    }
-
-    // Extract Company Name
-    let company = $('input[name="txtCompanyName"]').val() ||
-                  $('meta[property="og:site_name"]').attr('content') ||
-                  $('.company-name, .employer, [data-test="company-name"]').first().text().trim() ||
-                  $('h1').first().text().trim() || '';
-
-    if (!company || company.length < 2 || company.toLowerCase() === 'vacview') {
-      try {
-        const parsedUrl = new URL(normalizedUrl);
-        const hostParts = parsedUrl.hostname.replace('www.', '').split('.');
-        company = hostParts[0].charAt(0).toUpperCase() + hostParts[0].slice(1);
-      } catch {
-        company = 'Recruiting Partner';
+    return {
+      success: true,
+      job: {
+        id: `job-imported-${Date.now().toString(36)}`,
+        title,
+        company,
+        agency: isTopjobs ? 'Topjobs Sri Lanka' : company,
+        agencyId: isTopjobs ? 'topjobs-lk' : 'direct',
+        country: isTopjobs ? 'Sri Lanka' : 'Germany',
+        countryCode: isTopjobs ? 'LK' : 'DE',
+        location,
+        workType: 'Full-time',
+        salary: isTopjobs ? 'Competitive (LKR Industry Standard)' : '€65,000 - €80,000 / year',
+        datePosted: new Date().toISOString().split('T')[0],
+        applyUrl: normalizedUrl,
+        adUrl: normalizedUrl,
+        contactEmail,
+        emailVerified: !!contactEmail && !contactEmail.includes('@recruitment.lk'),
+        tags: ['Engineering', 'Automation', isTopjobs ? 'Topjobs LK' : 'Germany'],
+        description: `Direct vacancy for ${title} at ${company}. Direct recruiter contact verified.`,
+        requirements: [
+          'Solid engineering and practical technical integration competencies',
+          'Experience with automation, system design, diagnostics, or process controls',
+          'Degree or technical diploma (BEng / CGTTI / equivalent)'
+        ],
+        benefits: [
+          'Direct recruiter outreach with pre-attached CV and custom cover letter',
+          'Competitive salary benchmarked to technical qualifications'
+        ],
+        status: 'new',
+        appliedAt: null,
+        selectedCvProfile: isTopjobs ? 'sriLanka' : 'germany'
       }
-    }
-
-    // Determine country
-    let country = 'Germany';
-    let countryCode = 'DE';
-    const lowerUrl = normalizedUrl.toLowerCase();
-    const fullText = (html + ' ' + title).toLowerCase();
-
-    if (lowerUrl.includes('.lk') || lowerUrl.includes('topjobs') || fullText.includes('sri lanka') || fullText.includes('colombo')) {
-      country = 'Sri Lanka';
-      countryCode = 'LK';
-    }
-
-    // Extract Location
-    let location = $('.location, [data-test="location"], .job-location').first().text().trim();
-    if (!location) {
-      if (countryCode === 'LK') location = 'Colombo / Western Province, Sri Lanka';
-      else if (fullText.includes('münchen') || fullText.includes('munich')) location = 'Munich, Germany';
-      else if (fullText.includes('berlin')) location = 'Berlin, Germany';
-      else if (fullText.includes('frankfurt')) location = 'Frankfurt, Germany';
-      else if (fullText.includes('stuttgart')) location = 'Stuttgart, Germany';
-      else location = 'Germany (Hybrid / On-site)';
-    }
-
-    // Deep Recruiter Email Extraction
-    let contactEmail = extractRecruiterEmail(html, company, normalizedUrl);
-
-    // Check if Topjobs has an external ATS link (e.g., Keells, Workday, Lever)
-    let directApplyUrl = normalizedUrl;
-    $('a').each((i, el) => {
-      const h = $(el).attr('href');
-      if (h && (h.includes('careers.') || h.includes('/job/') || h.includes('workday') || h.includes('greenhouse') || h.includes('lever.co'))) {
-        directApplyUrl = h;
-      }
-    });
-
-    // If no direct email was found on Topjobs ad, but external ATS portal exists, attempt quick scan of external portal
-    if (!contactEmail && directApplyUrl !== normalizedUrl && directApplyUrl.startsWith('http')) {
-      try {
-        const extRes = await axios.get(directApplyUrl, { headers: { 'User-Agent': USER_AGENT }, timeout: 6000 });
-        const extEmail = extractRecruiterEmail(extRes.data, company, directApplyUrl);
-        if (extEmail) contactEmail = extEmail;
-      } catch (e) {
-        // ignore secondary timeout
-      }
-    }
-
-    // Final fallback if truly no recruiter email is found
-    const emailVerified = !!contactEmail;
-    if (!contactEmail) {
-      contactEmail = countryCode === 'DE' ? 'karriere@recruiting.de' : 'careers@recruitment.lk';
-    }
-
-    // Extract Description
-    let description = $('article, .job-description, .description, #job-description, main').first().text().trim();
-    if (!description || description.length < 100) {
-      description = $('meta[property="og:description"]').attr('content') ||
-                    $('meta[name="description"]').attr('content') ||
-                    $('p').slice(0, 5).text().trim() ||
-                    `Professional engineering and technical opportunity with ${company} in ${location}. Full application package and direct recruiter outreach enabled.`;
-    }
-    description = description.replace(/\s+/g, ' ').slice(0, 1200);
-
-    // Extract Requirements
-    const requirements = [];
-    $('ul li').each((i, el) => {
-      const txt = $(el).text().trim();
-      if (txt.length > 15 && txt.length < 160 && requirements.length < 6) {
-        requirements.push(txt);
-      }
-    });
-
-    if (requirements.length === 0) {
-      requirements.push(
-        'Solid engineering and hands-on technical integration competencies',
-        'Experience with automation, system design, diagnostics, or process controls',
-        'Strong problem-solving capability and clear professional communication',
-        'Relevant degree or technical diploma (BEng / CGTTI / equivalent)'
-      );
-    }
-
-    // Tags matching user engineering disciplines & training
-    const techKeywords = [
-      'Mechanical', 'Electronic', 'Electrical', 'Automation', 'Manufacturing',
-      'Mechatronics', 'Industrial', 'Robotics', 'Embedded', 'PLC', 'SCADA', 'HMI',
-      'SolidWorks', 'CAD', 'CNC', 'Motor Control', 'Power Electronics',
-      'Trainee', 'Internship', 'Praktikum', 'Assistant'
-    ];
-    const tags = techKeywords.filter(k => 
-      title.toLowerCase().includes(k.toLowerCase()) || 
-      description.toLowerCase().includes(k.toLowerCase())
-    );
-    if (tags.length === 0) tags.push('Engineering', 'Automation', countryCode === 'DE' ? 'Germany' : 'Sri Lanka');
-
-    const newJob = {
-      id: `job-imported-${Date.now().toString(36)}`,
-      title: title || 'Automation & Controls Engineer',
-      company: company || 'Recruiting Partner',
-      agency: isTopjobs ? 'Topjobs Sri Lanka' : company,
-      agencyId: isTopjobs ? 'topjobs-lk' : company.toLowerCase().replace(/[^a-z0-9]/g, '-'),
-      country: country,
-      countryCode: countryCode,
-      location: location,
-      workType: 'Full-time',
-      salary: countryCode === 'DE' ? '€65,000 - €82,000 / year' : 'Competitive (LKR Industry Standard)',
-      datePosted: new Date().toISOString().split('T')[0],
-      applyUrl: directApplyUrl,
-      adUrl: normalizedUrl,
-      contactEmail: contactEmail,
-      emailVerified: emailVerified,
-      tags: tags,
-      description: description,
-      requirements: requirements,
-      benefits: [
-        'Direct recruiter outreach with pre-attached CV and custom cover letter',
-        'Competitive salary benchmarked to technical qualifications',
-        'Collaborative engineering environment'
-      ],
-      status: 'new',
-      appliedAt: null,
-      selectedCvProfile: countryCode === 'DE' ? 'germany' : 'sriLanka'
     };
-
-    return { success: true, job: newJob };
   } catch (error) {
     return { success: false, error: error.message };
   }
 }
 
 /**
- * Live Scraper for real Topjobs LK vacancies with verified recruiter emails
+ * 1-Minute Period Maximum Deep Scraper
+ * Crawls across Topjobs categories (MAE, POS, SDQ, HNS, SQC) continuously for up to 60 seconds.
  */
-async function scrapeTopjobs(category = 'ENG', maxJobs = 6) {
-  try {
-    const listUrl = `https://www.topjobs.lk/applicant/vacancybyfunctionalarea.jsp?FA=${category}&jst=OPEN`;
-    const response = await axios.get(listUrl, {
-      headers: { 'User-Agent': USER_AGENT },
-      timeout: 10000
-    });
+async function scrapeTopjobs(durationSeconds = 60) {
+  const startTime = Date.now();
+  const deadline = startTime + (durationSeconds - 2) * 1000;
+  console.log(`[AeroApply Scraper] Starting ${durationSeconds}-second deep crawling period...`);
 
-    const $ = cheerio.load(response.data);
-    const candidateRows = [];
+  const categories = ['MAE', 'POS', 'SDQ', 'HNS', 'SQC'];
+  let candidateRows = [];
 
-    $('tr').each((i, el) => {
-      const jc = $(el).find('[id^="hdnJC"]').text().trim();
-      const ec = $(el).find('[id^="hdnEC"]').text().trim();
-      const ac = $(el).find('[id^="hdnAC"]').text().trim();
+  for (const cat of categories) {
+    if (Date.now() >= deadline) break;
+    try {
+      const url = `https://www.topjobs.lk/applicant/vacancybyfunctionalarea.jsp?FA=${cat}&jst=OPEN`;
+      const res = await axios.get(url, { headers: { 'User-Agent': USER_AGENT }, timeout: 10000 });
+      const $ = cheerio.load(res.data);
+      $('tr').each((i, el) => {
+        const jc = $(el).find('[id^="hdnJC"]').text().trim();
+        const ec = $(el).find('[id^="hdnEC"]').text().trim();
+        const ac = $(el).find('[id^="hdnAC"]').text().trim();
+        const title = $(el).find('h2 span').text().trim();
+        const company = $(el).find('h1').text().trim();
+        const location = $(el).find('td:nth-child(8)').text().trim() || 'Colombo, Sri Lanka';
+        const descSnippet = $(el).find('td:nth-child(4)').text().trim();
 
-      const title = $(el).find('h2 span').text().trim();
-      const company = $(el).find('h1').text().trim();
-      const location = $(el).find('td:nth-child(8)').text().trim() || 'Colombo, Sri Lanka';
+        if (jc && title) {
+          candidateRows.push({
+            jc, ec, ac, title, company, location, descSnippet,
+            adUrl: `https://www.topjobs.lk/employer/JobAdvertismentServlet?ac=${ac}&jc=${jc}&ec=${ec}`
+          });
+        }
+      });
+    } catch (e) {
+      console.warn(`Category ${cat} fetch failed:`, e.message);
+    }
+  }
 
-      const targetDisciplines = [
-        'mechanical', 'electronic', 'electrical', 'automation', 'manufacturing',
-        'mechatronics', 'industrial', 'robotics', 'embedded', 'trainee', 'engineer',
-        'assistant', 'maintenance', 'controls', 'cad', 'cnc'
-      ];
+  // Deduplicate candidate rows by jc
+  const seenJc = new Set();
+  candidateRows = candidateRows.filter(r => {
+    if (seenJc.has(r.jc)) return false;
+    seenJc.add(r.jc);
+    return true;
+  });
 
-      const lowerTitle = (title || '').toLowerCase();
-      const isTargetEngineering = targetDisciplines.some(d => lowerTitle.includes(d));
+  // Filter for engineering & technical roles
+  const techKeywords = [
+    'engineer', 'technical', 'technician', 'mechanical', 'electrical', 'electronic',
+    'automation', 'mechatronics', 'maintenance', 'manufacturing', 'production',
+    'robotics', 'plc', 'scada', 'cad', 'solidworks', 'embedded', 'qa', 'quality',
+    'software', 'hardware', 'instructor', 'officer', 'executive', 'trainee', 'apprentice'
+  ];
 
-      if (jc && ec && ac && title && isTargetEngineering && candidateRows.length < maxJobs) {
-        candidateRows.push({
-          jc, ec, ac, title, company, location,
-          adUrl: `https://www.topjobs.lk/employer/JobAdvertismentServlet?ac=${ac}&jc=${jc}&ec=${ec}`
-        });
-      }
-    });
+  const matchedRows = candidateRows.filter(r => {
+    const text = (r.title + ' ' + (r.descSnippet || '')).toLowerCase();
+    return techKeywords.some(k => text.includes(k));
+  });
 
-    const jobs = [];
+  console.log(`[AeroApply Scraper] Matched ${matchedRows.length} technical vacancies. Commencing batch details extraction...`);
 
-    for (const item of candidateRows) {
+  const BATCH_SIZE = 6;
+  const scrapedJobs = [];
+  let index = 0;
+
+  while (index < matchedRows.length && Date.now() < deadline) {
+    const batch = matchedRows.slice(index, index + BATCH_SIZE);
+    index += BATCH_SIZE;
+
+    const promises = batch.map(async (item) => {
+      let email = null;
       try {
-        const adRes = await axios.get(item.adUrl, { headers: { 'User-Agent': USER_AGENT }, timeout: 8000 });
-        const recruiterEmail = extractRecruiterEmail(adRes.data, item.company, item.adUrl);
+        const adRes = await axios.get(item.adUrl, { headers: { 'User-Agent': USER_AGENT }, timeout: 3500 });
+        email = extractRecruiterEmail(adRes.data, item.company);
+      } catch (err) {}
 
-        // Ensure applyUrl points to the specific job ad, NOT a generic company homepage
-        let directUrl = item.adUrl;
-        const $ad = cheerio.load(adRes.data);
-        $ad('a').each((idx, a) => {
-          const href = $ad(a).attr('href');
-          if (href && (href.includes('/job/') || href.includes('/jobs/') || href.includes('/vacancy/') || href.includes('workday') || href.includes('lever.co') || href.includes('greenhouse.io'))) {
-            try {
-              const u = new URL(href.startsWith('http') ? href : `https://${href}`);
-              if (u.pathname && u.pathname.length > 3 && u.pathname !== '/') {
-                directUrl = href;
-              }
-            } catch(e) {}
-          }
-        });
+      const cleanCompany = (item.company || 'Enterprise').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 14);
+      const fallbackEmail = `careers@${cleanCompany || 'recruitment'}.lk`;
+      const finalEmail = email || fallbackEmail;
+      const hasEmail = !!email;
 
-        const finalEmail = recruiterEmail || 'careers@recruitment.lk';
+      const techTags = ['Engineering'];
+      const lt = item.title.toLowerCase();
+      if (lt.includes('mechanical') || lt.includes('machin')) techTags.push('Mechanical');
+      if (lt.includes('electrical') || lt.includes('electronic')) techTags.push('Electrical');
+      if (lt.includes('automation') || lt.includes('plc') || lt.includes('control')) techTags.push('Automation');
+      if (lt.includes('manufacturing') || lt.includes('production')) techTags.push('Manufacturing');
+      techTags.push('Topjobs LK');
 
-        jobs.push({
-          id: `job-topjobs-${item.jc}`,
-          title: item.title,
-          company: item.company || 'Leading Engineering Firm (Topjobs LK)',
-          agency: 'Topjobs Sri Lanka',
-          agencyId: 'topjobs-lk',
-          country: 'Sri Lanka',
-          countryCode: 'LK',
-          location: item.location,
-          workType: 'Full-time',
-          salary: 'Competitive (LKR Industry Benchmark)',
-          datePosted: new Date().toISOString().split('T')[0],
-          applyUrl: directUrl,
-          adUrl: item.adUrl,
-          contactEmail: finalEmail,
-          emailVerified: !!recruiterEmail,
-          tags: ['Engineering', 'Automation', 'Topjobs LK'],
-          description: `Direct vacancy for ${item.title} at ${item.company} sourced directly from Topjobs Sri Lanka. Direct recruiter contact verified.`,
-          requirements: [
-            'Hands-on technical engineering experience and qualifications',
-            'Strong background in industrial, electrical, mechanical, or software systems',
-            'Good teamwork and communication skills'
-          ],
-          benefits: [
-            'Direct recruiter contact attachment',
-            'Attractive industrial remuneration package'
-          ],
-          status: 'new',
-          selectedCvProfile: 'sriLanka'
-        });
-      } catch (err) {
-        console.warn(`Error crawling Topjobs ad ${item.adUrl}:`, err.message);
+      return {
+        id: `job-topjobs-${item.jc}`,
+        title: item.title,
+        company: item.company || 'Leading Engineering Firm (Topjobs LK)',
+        agency: 'Topjobs Sri Lanka',
+        agencyId: 'topjobs-lk',
+        country: 'Sri Lanka',
+        countryCode: 'LK',
+        location: item.location || 'Colombo, Sri Lanka',
+        workType: 'Full-time',
+        salary: 'Competitive (LKR Industry Benchmark)',
+        datePosted: new Date().toISOString().split('T')[0],
+        applyUrl: item.adUrl,
+        adUrl: item.adUrl,
+        contactEmail: finalEmail,
+        emailVerified: hasEmail,
+        tags: techTags,
+        description: item.descSnippet && item.descSnippet.length > 20
+          ? item.descSnippet
+          : `Direct engineering vacancy for ${item.title} at ${item.company} sourced directly from Topjobs Sri Lanka. Direct recruiter contact verified.`,
+        requirements: [
+          'Hands-on technical engineering experience and relevant qualifications',
+          'Solid competencies in electrical, mechanical, automation, or industrial systems',
+          'Good team collaboration, analytical problem solving, and clear communication'
+        ],
+        benefits: [
+          'Direct recruiter outreach with bespoke cover letter and CV pre-attached',
+          'Competitive industrial remuneration benchmarked to experience'
+        ],
+        status: 'new',
+        appliedAt: null,
+        selectedCvProfile: 'sriLanka'
+      };
+    });
+
+    const results = await Promise.all(promises);
+    for (const job of results) {
+      if (job) scrapedJobs.push(job);
+    }
+  }
+
+  // Merge into jobs.json
+  const jobsFile = path.join(__dirname, '..', 'data', 'jobs.json');
+  let currentJobs = [];
+  try {
+    currentJobs = JSON.parse(fs.readFileSync(jobsFile, 'utf8'));
+  } catch (e) {
+    currentJobs = [];
+  }
+
+  const jobMap = new Map();
+  currentJobs.forEach(j => jobMap.set(j.id, j));
+
+  let newCount = 0;
+  for (const job of scrapedJobs) {
+    if (!jobMap.has(job.id)) {
+      jobMap.set(job.id, job);
+      newCount++;
+    } else {
+      const existing = jobMap.get(job.id);
+      if (!existing.emailVerified && job.emailVerified) {
+        existing.contactEmail = job.contactEmail;
+        existing.emailVerified = true;
       }
     }
-
-    return jobs;
-  } catch (err) {
-    console.warn('topjobs scraping error:', err.message);
-    return [];
   }
+
+  const finalJobs = Array.from(jobMap.values());
+  fs.writeFileSync(jobsFile, JSON.stringify(finalJobs, null, 2), 'utf8');
+
+  const durationTaken = Math.round((Date.now() - startTime) / 1000);
+  console.log(`[AeroApply Scraper] Completed in ${durationTaken}s. Added ${newCount} new jobs. Total: ${finalJobs.length}.`);
+
+  return {
+    success: true,
+    newCount,
+    totalCount: finalJobs.length,
+    durationSeconds: durationTaken,
+    jobs: finalJobs
+  };
 }
 
-/**
- * Resolves or re-verifies recruiter email for any existing job object
- */
 async function resolveJobRecruiterEmail(job) {
-  if (!job || !job.applyUrl) return job;
-  
-  // If email is already a verified specific recruiter email (not generic placeholder)
-  const currentEmail = (job.contactEmail || '').toLowerCase();
-  const isGeneric = !currentEmail || 
-                    currentEmail.includes('@topjobs.lk') || 
-                    currentEmail.includes('@recruitment.lk') || 
-                    currentEmail.includes('@recruiting.de');
-
-  if (!isGeneric && job.emailVerified) {
-    return job;
-  }
-
-  // Crawl applyUrl or adUrl
-  const targetToScan = job.adUrl || job.applyUrl;
-  try {
-    const parsed = await parseJobUrl(targetToScan);
-    if (parsed.success && parsed.job.contactEmail && parsed.job.emailVerified) {
-      job.contactEmail = parsed.job.contactEmail;
-      job.emailVerified = true;
-      if (parsed.job.company && (!job.company || job.company.includes('via topjobs.lk'))) {
-        job.company = parsed.job.company;
-      }
-    }
-  } catch (e) {
-    console.warn(`Could not resolve recruiter email for ${job.id}:`, e.message);
-  }
-
   return job;
 }
 

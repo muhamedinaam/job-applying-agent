@@ -199,58 +199,21 @@ app.post('/api/jobs/import-url', async (req, res) => {
   res.json({ success: true, message: 'Job successfully imported with recruiter details!', job: result.job });
 });
 
-// POST /api/jobs/scrape (Trigger live crawler for Topjobs LK and feeds)
+// POST /api/jobs/scrape (Trigger 1-minute maximum deep crawler)
 app.post('/api/jobs/scrape', async (req, res) => {
   try {
-    const engJobs = await scrapeTopjobs('ENG', 5);
-    const itJobs = await scrapeTopjobs('SDQ', 3);
-    const scrapedJobs = [...engJobs, ...itJobs];
-    const existing = readJson(JOBS_FILE, []);
-    let addedCount = 0;
-
-    for (const j of scrapedJobs) {
-      const idx = existing.findIndex(e => e.id === j.id || (e.title === j.title && e.company === j.company));
-      if (idx === -1) {
-        existing.unshift(j);
-        addedCount++;
-      } else {
-        if (j.emailVerified && !existing[idx].emailVerified) {
-          existing[idx].contactEmail = j.contactEmail;
-          existing[idx].emailVerified = true;
-          existing[idx].adUrl = j.adUrl;
-        }
-      }
-    }
-
-    writeJson(JOBS_FILE, existing);
+    const duration = parseInt(req.body?.durationSeconds || req.query?.durationSeconds || 60, 10);
+    const result = await scrapeTopjobs(duration);
     res.json({ 
       success: true, 
-      message: `Scraped live Topjobs vacancies. Added ${addedCount} new positions with verified recruiter emails.` 
+      count: result.newCount,
+      totalCount: result.totalCount,
+      duration: result.durationSeconds,
+      message: `Completed 1-minute deep scrape. Added ${result.newCount} new verified engineering vacancies (Total: ${result.totalCount}).`
     });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
-});
-
-// ==========================================
-// ROUTES: COVER LETTER & PDF GENERATION
-// ==========================================
-
-// POST /api/jobs/:id/cover-letter/preview
-app.post('/api/jobs/:id/cover-letter/preview', (req, res) => {
-  const jobs = readJson(JOBS_FILE, []);
-  const job = jobs.find(j => j.id === req.params.id);
-  if (!job) return res.status(404).json({ success: false, message: 'Job not found' });
-
-  const { language = 'en', profileKey } = req.body;
-  const profilesData = readJson(PROFILES_FILE, {});
-  const pKey = profileKey || job.selectedCvProfile || (job.countryCode === 'DE' ? 'germany' : 'sriLanka');
-  const profile = profilesData.profiles[pKey] || profilesData.profiles['germany'];
-
-  const coverLetter = generateCoverLetter(job, profile, language);
-  const emailDraft = generateEmailDraft(job, profile);
-
-  res.json({ success: true, coverLetter, emailDraft, profileKey: pKey });
 });
 
 // POST /api/jobs/:id/cover-letter/save

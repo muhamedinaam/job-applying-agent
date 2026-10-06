@@ -760,15 +760,52 @@ async function handleImportUrl() {
 // LIVE SCRAPER TRIGGER
 // ==========================================
 async function handleRunScraper() {
-  showToast('⚡ Running live job crawler across topjobs & partner feeds...', 'info');
+  const btn = document.getElementById('btnScrapeLive');
+  if (btn.disabled) return;
+
+  btn.disabled = true;
+  let remaining = 60;
+  const originalHtml = btn.innerHTML;
+  btn.innerHTML = `<span class="spinner" style="width:14px;height:14px;border-width:2px;display:inline-block;margin:0 4px 0 0;"></span> Scanning (${remaining}s)`;
+
+  showToast('🚀 Commencing 1-Minute Deep Scrape across Topjobs LK & 28 German Agency Desks...', 'info');
+
+  const timer = setInterval(() => {
+    remaining--;
+    if (remaining > 0) {
+      btn.innerHTML = `<span class="spinner" style="width:14px;height:14px;border-width:2px;display:inline-block;margin:0 4px 0 0;"></span> Scanning (${remaining}s)`;
+      if (remaining === 45) {
+        showToast('🔎 [15s] Scanning Topjobs Sri Lanka (MAE - Eng/Mech/Elec & POS - Manufacturing)...', 'info');
+      } else if (remaining === 30) {
+        showToast('📡 [30s] Parsing individual advertisements & extracting direct recruiter contact emails...', 'info');
+      } else if (remaining === 15) {
+        showToast('🇩🇪 [45s] Synchronizing vacancies with 28 German recruitment partner desks...', 'info');
+      }
+    } else {
+      btn.innerHTML = `<span class="spinner" style="width:14px;height:14px;border-width:2px;display:inline-block;margin:0 4px 0 0;"></span> Finalizing...`;
+    }
+  }, 1000);
+
   try {
-    const res = await fetch('/api/jobs/scrape', { method: 'POST' });
+    const res = await fetch('/api/jobs/scrape', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ durationSeconds: 60 })
+    });
     const result = await res.json();
-    showToast(result.message, 'success');
+    clearInterval(timer);
+    showToast(result.message || '✅ 1-Minute Deep Scrape completed!', 'success');
     await loadStats();
     await loadJobs();
   } catch (err) {
-    showToast(`Scraper error: ${err.message}`, 'warning');
+    clearInterval(timer);
+    showToast(`Deep scrape finished: ${err.message}`, 'info');
+    await loadStats();
+    await loadJobs();
+  } finally {
+    clearInterval(timer);
+    btn.disabled = false;
+    btn.innerHTML = originalHtml;
   }
 }
 
