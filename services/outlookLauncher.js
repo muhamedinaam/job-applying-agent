@@ -103,6 +103,7 @@ function launchOutlookApplication({ to, subject, body, coverLetterPdfPath, cvFil
     });
 
     // 2. Launch Outlook natively using registered Outlook.File.eml handler
+    if (process.platform === 'win32') {
     const classicOutlook = 'C:\\Program Files\\Microsoft Office\\Root\\Office16\\OUTLOOK.EXE';
     if (fs.existsSync(classicOutlook)) {
       // Direct call to Outlook /eml switch
@@ -119,6 +120,7 @@ function launchOutlookApplication({ to, subject, body, coverLetterPdfPath, cvFil
     if (coverLetterPdfPath && fs.existsSync(coverLetterPdfPath)) {
       const resolvedPdf = path.resolve(coverLetterPdfPath);
       execFile('explorer.exe', [`/select,${resolvedPdf}`], () => {});
+    }
     }
 
     const encodedSubject = encodeURIComponent(subject || '');
@@ -153,7 +155,7 @@ async function openPortalUrl(url) {
   }
 
   return new Promise((resolve) => {
-    execFile('cmd', ['/c', 'start', '', url], (err) => {
+    if (process.platform !== 'win32') return resolve(false); execFile('cmd', ['/c', 'start', '', url], (err) => {
       resolve(!err);
     });
   });
