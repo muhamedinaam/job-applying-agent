@@ -17,6 +17,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/services', express.static(path.join(__dirname, 'services')));
+app.use(express.static(__dirname));
 app.use('/uploads', express.static(path.join(__dirname, 'data', 'uploads')));
 app.use('/letters', express.static(path.join(__dirname, 'data', 'generated_letters')));
 

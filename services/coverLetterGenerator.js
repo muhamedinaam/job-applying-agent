@@ -165,7 +165,10 @@ LinkedIn: ${candidateLinkedIn}`;
   };
 }
 
-module.exports = {
-  generateCoverLetter,
-  generateEmailDraft
-};
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { generateCoverLetter, generateEmailDraft };
+}
+if (typeof window !== 'undefined') {
+  window.generateCoverLetter = generateCoverLetter;
+  window.generateEmailDraft = generateEmailDraft;
+}
