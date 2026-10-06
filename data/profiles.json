@@ -1,0 +1,151 @@
+{
+  "activeProfile": "germany",
+  "profiles": {
+    "germany": {
+      "id": "germany",
+      "country": "Germany",
+      "countryCode": "DE",
+      "flag": "🇩🇪",
+      "name": "Muhammadhu Inaam",
+      "dateOfBirth": "23rd November 2001",
+      "title": "Mechatronics Engineer — Automation & Controls",
+      "email": "mohamedinnam787@gmail.com",
+      "phone": "+94 77 089 6608",
+      "address": "Beruwala, Kalutara, Sri Lanka (Relocation to Germany Ready)",
+      "nationality": "Sri Lankan",
+      "workAuthorization": "Eligible for German Opportunity Card (Chancenkarte) & EU Blue Card Fast-Track Recognition",
+      "languages": "English (Native / C2), German (Basic A1, actively learning), Tamil (Native / C2), Sinhala (Native / C2)",
+      "linkedin": "https://www.linkedin.com/in/muhammadhu-inaam-698566272/",
+      "github": "https://github.com/muhammadhu-inaam",
+      "portfolio": "https://www.linkedin.com/in/muhammadhu-inaam-698566272/",
+      "summary": "Hands-on Mechatronics Engineer with 2+ years of professional experience across PLC/HMI/SCADA automation, embedded systems, CNC machines, and industrial process control. Holds a Bachelor of Engineering Technology (Hons) in Mechatronics from the University of Sri Jayewardenepura and specialized industrial automation certifications from the Ceylon German Technical Training Institute. Proven track record taking hardware from concept through to full production, including an industrial CNC laser cutter and an IoT-enabled 3-phase motor controller. Actively learning German (A1) and seeking an international Automation, Mechatronics, or Controls Engineer position in Germany.",
+      "skills": [
+        "PLC Programming (Siemens, Delta)", "HMI & SCADA Systems", "Industrial Automation & Process Control",
+        "C / C++", "Python", "Microcontrollers & Embedded Systems", "Circuit Design & PCB Layout",
+        "Electronics Debugging", "Power Electronics & Motor Control", "SolidWorks & CAD",
+        "CNC Systems & Machining", "3D Printing & Additive Manufacturing", "Primavera P6", "Supplier Sourcing"
+      ],
+      "experience": [
+        {
+          "role": "Mechatronics Engineer",
+          "company": "Skipod Manufacturer Pvt Ltd (US-based company)",
+          "period": "Sep 2025 - Jul 2026",
+          "location": "Sri Lanka / International",
+          "highlights": "Designed and built the 'Skimulator' interactive simulation system from concept through working hardware. Engineered an industrial CNC laser cutter from scratch, integrating mechanical chassis with custom electronics, stepper drivers, and safety controls. Redesigned the Skimulator into a compact production unit, cutting machine footprint while retaining full functionality. Tested simulation software integration and managed international supplier sourcing from concept to production."
+        },
+        {
+          "role": "Assistant Mechatronics Engineer",
+          "company": "AXEL Industries Pvt Ltd",
+          "period": "May 2024 - Jul 2025",
+          "location": "Sri Lanka",
+          "highlights": "Programmed, operated, and troubleshot industrial PLC, HMI, and SCADA automation lines for continuous manufacturing processes. Designed, fabricated, and validated electro-mechanical systems. Collaborated across multidisciplinary engineering teams to enhance automation reliability, cycle time, and factory uptime."
+        }
+      ],
+      "education": "Bachelor of Engineering Technology (Hons) in Mechatronics, University of Sri Jayewardenepura (2022 - 2026) | Industrial Automation (PLC) & Electronics (E2), Ceylon German Technical Training Institute (2024)",
+      "projects": [
+        "IoT-Enabled 3-Phase Motor Controller (Final Year Project - 1 kW system with real-time telemetry)",
+        "Automated Pulse Jet Dust Collector (DSI, Galle - full PLC + HMI + SCADA deployment)",
+        "Traditional Lathe to CNC Conversion (complete mechanical and motion control retrofit)",
+        "Industrial CNC Laser Cutter (built from scratch with integrated controls)",
+        "340 kW On-Grid Solar Installation (Rajagiriya - three-phase grid integration and testing)"
+      ],
+      "references": [
+        {
+          "name": "Dr. Kasun Weranga",
+          "title": "Senior Lecturer, Faculty of Technology (FOT)",
+          "institution": "University of Sri Jayewardenepura",
+          "email": "kasun.weranga@sjp.ac.lk",
+          "phone": "+64 22 032 7126"
+        },
+        {
+          "name": "Chalinda Wickramasinghe",
+          "title": "Project Engineer",
+          "institution": "Skipod Manufacturer Pvt Ltd",
+          "email": "chalindaw@skipod.lk",
+          "phone": "+94 76 543 2613"
+        }
+      ],
+      "cvFileName": "Muhammadhu_Inaam_CV_Germany.pdf",
+      "cvFilePath": "data/uploads/Muhammadhu_Inaam_CV_Germany.pdf",
+      "hasCustomFile": true
+    },
+    "sriLanka": {
+      "id": "sriLanka",
+      "country": "Sri Lanka",
+      "countryCode": "LK",
+      "flag": "🇱🇰",
+      "name": "Muhammadhu Inaam",
+      "dateOfBirth": "23rd November 2001",
+      "title": "Mechatronics Engineer — Automation & Controls",
+      "email": "mohamedinnam787@gmail.com",
+      "phone": "+94 77 089 6608",
+      "address": "Beruwala, Kalutara, Sri Lanka",
+      "nationality": "Sri Lankan",
+      "workAuthorization": "Citizen of Sri Lanka (Available for immediate on-site engagement)",
+      "languages": "English (Native / C2), Sinhala (Native / C2), Tamil (Native / C2), German (Basic A1)",
+      "linkedin": "https://www.linkedin.com/in/muhammadhu-inaam-698566272/",
+      "github": "https://github.com/muhammadhu-inaam",
+      "portfolio": "https://www.linkedin.com/in/muhammadhu-inaam-698566272/",
+      "summary": "Motivated Mechatronics Engineer with solid knowledge in mechanical, electronic and control systems integration. Completed specialized training in PLC programming and industrial automation at Ceylon German Technical Training Institute. Practical experience in designing IoT-enabled devices, CNC systems, industrial automation projects and 3D modeling. Seeking a junior-to-mid-level Automation / Mechatronics / Controls Engineer role locally to contribute technical skills in an innovative team while gaining advance industry exposure.",
+      "skills": [
+        "PLC / HMI / SCADA Programming", "Microcontrollers & Embedded Systems", "Programming: C, C++, Python",
+        "CAD / 3D Modeling (SolidWorks)", "Circuit Design & PCB Layout", "Electronics Debugging",
+        "3D Printing & Additive Manufacturing", "Power Electronics & Motor Control",
+        "Industrial Automation & Process Control", "Project Management (Primavera P6)", "Supply Chain Management"
+      ],
+      "softSkills": [
+        "Problem-solving and Adaptability",
+        "Analytical Thinking",
+        "Leadership",
+        "Teamwork abilities",
+        "Communication Skills",
+        "Interpersonal Skills",
+        "Time Management"
+      ],
+      "experience": [
+        {
+          "role": "Mechatronics Engineer",
+          "company": "Skipod Manufacturer Pvt Ltd (USA based Company)",
+          "period": "Sep 2025 - Jul 2026",
+          "location": "Sri Lanka",
+          "highlights": "Gained advanced knowledge to design and build a Skimulator. Acquired hands-on expertise in building a laser cutter from scratch. Integrated and tested simulation games within the Skimulator environment. Redesigned and developed the previous Skimulator into a more compact version. Supplier sourcing from sketch."
+        },
+        {
+          "role": "Assistant Mechatronics Engineer",
+          "company": "AXEL Industries Pvt Ltd (Sri Lanka)",
+          "period": "May 2024 - Jul 2025",
+          "location": "Sri Lanka",
+          "highlights": "Work with PLC, HMI, and SCADA systems for automation and process control. Design, develop, and test mechatronic systems for industrial applications. Collaborate with cross-functional teams to enhance automation."
+        }
+      ],
+      "education": "Bachelor of Engineering Technology (Hons) in Mechatronics, University of Sri Jayewardenepura (2022 - 2026) | Industrial Automation – (Course Code: PLC), Ceylon German Technical Training Institute (2024) | Electronic – (Course Code: E2), Ceylon German Technical Training Institute (2024)",
+      "projects": [
+        "IoT-Enabled 3-Phase Motor Controller (Final Year Project - 1 kW with remote diagnostics)",
+        "Automated Pulse Jet Dust Collector – DSI, Galle (PLC + HMI + SCADA industrial system)",
+        "Traditional Lathe to CNC Conversion (manual machine converted to automated CNC system)",
+        "Industrial CNC Laser Cutter (Scratch Build - mechanical structure & electronics)",
+        "340 kW On-Grid Solar Installation, Rajagiriya (3-phase inverter testing and commissioning)",
+        "Additional Projects: Moisture Harvesting System, Arduino-Based Automated Feeding System, Surface Texture Measurement Device, Automatic Light Control System"
+      ],
+      "references": [
+        {
+          "name": "Dr. Kasun Weranga",
+          "title": "Senior Lecturer, Faculty of Technology",
+          "institution": "University of Sri Jayewardenepura",
+          "email": "kasun.weranga@sjp.ac.lk",
+          "phone": "+64 22 032 7126"
+        },
+        {
+          "name": "Chalinda Wickramasinghe",
+          "title": "Project Engineer",
+          "institution": "Skipod Manufacturer Pvt Ltd",
+          "email": "chalindaw@skipod.lk",
+          "phone": "+94 76 543 2613"
+        }
+      ],
+      "cvFileName": "Muhammadhu_Inaam_CV_SriLanka.pdf",
+      "cvFilePath": "data/uploads/Muhammadhu_Inaam_CV_SriLanka.pdf",
+      "hasCustomFile": true
+    }
+  }
+}

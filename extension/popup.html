@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AeroApply Assistant</title>
+  <style>
+    body {
+      width: 320px;
+      margin: 0;
+      padding: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0b0f19;
+      color: #f1f5f9;
+      box-sizing: border-box;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .header h2 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-badge {
+      font-size: 10px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .profile-selector {
+      margin-bottom: 12px;
+    }
+    .profile-selector label {
+      font-size: 11px;
+      color: #94a3b8;
+      display: block;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    select {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #ffffff;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      cursor: pointer;
+      outline: none;
+    }
+    .btn-autofill {
+      width: 100%;
+      background: linear-gradient(135deg, #059669, #0284c7);
+      color: #ffffff;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      transition: all 0.2s;
+    }
+    .btn-autofill:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+    .quick-copy-sec {
+      margin-top: 14px;
+      border-top: 1px solid #1e293b;
+      padding-top: 10px;
+    }
+    .quick-copy-sec h4 {
+      margin: 0 0 8px 0;
+      font-size: 11px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .chips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .chip {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s;
+    }
+    .chip:hover {
+      background: #334155;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+    .toast {
+      margin-top: 8px;
+      font-size: 11px;
+      text-align: center;
+      color: #34d399;
+      min-height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>⚡ AeroApply</h2>
+    <span class="status-badge">Edge / Chrome</span>
+  </div>
+
+  <div class="profile-selector">
+    <label>Active Profile</label>
+    <select id="profileSelect">
+      <option value="germany">🇩🇪 Germany (Engineering / EU Blue Card)</option>
+      <option value="sriLanka">🇱🇰 Sri Lanka (Tech / Lead Full Stack)</option>
+    </select>
+  </div>
+
+  <button class="btn-autofill" id="btnAutofill">
+    <span>⚡ Autofill Portal Form</span>
+  </button>
+
+  <div class="quick-copy-sec">
+    <h4>1-Click Quick Copy</h4>
+    <div class="chips-grid">
+      <div class="chip" id="copyName">📋 Name</div>
+      <div class="chip" id="copyEmail">📋 Email</div>
+      <div class="chip" id="copyPhone">📋 Phone</div>
+      <div class="chip" id="copyLinkedIn">📋 LinkedIn</div>
+      <div class="chip" id="copyVisa">📋 Visa / Permit</div>
+      <div class="chip" id="copySummary">📋 Summary</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toastMsg"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

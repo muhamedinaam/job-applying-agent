@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroApply // Autonomous Job Search & Application Dispatcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top Navigation & Status -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand-group">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>AEROAPPLY <span class="brand-tag">AGENT v2.4</span></h1>
+          <p class="brand-sub">Autonomous Job Discovery & Outlook Application Dispatcher</p>
+        </div>
+      </div>
+
+      <!-- Live KPI Badges -->
+      <div class="kpi-group">
+        <div class="kpi-pill" id="kpiTotal">
+          <span class="kpi-label">TOTAL JOBS</span>
+          <span class="kpi-val" id="statTotal">--</span>
+        </div>
+        <div class="kpi-pill kpi-de" id="kpiGermany">
+          <span class="kpi-label">🇩🇪 GERMANY</span>
+          <span class="kpi-val" id="statGermany">--</span>
+        </div>
+        <div class="kpi-pill kpi-lk" id="kpiSriLanka">
+          <span class="kpi-label">🇱🇰 SRI LANKA</span>
+          <span class="kpi-val" id="statSriLanka">--</span>
+        </div>
+        <div class="kpi-pill kpi-applied" id="kpiApplied">
+          <span class="kpi-label">✅ APPLIED</span>
+          <span class="kpi-val" id="statApplied">--</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <button class="btn btn-secondary" id="btnImportJob" title="Import job from any URL (Hays, Randstad, Ferchau, Topjobs, etc.)">
+          <span class="btn-icon">🔗</span> Import URL
+        </button>
+        <button class="btn btn-secondary" id="btnScrapeLive" title="Scan web for newly posted tech vacancies">
+          <span class="btn-icon">⚡</span> Run Scraper
+        </button>
+        <button class="btn btn-secondary" id="btnAutofillModal" title="Autofill assistant for Chrome & Edge">
+          <span class="btn-icon">🧩</span> Portal Autofill
+        </button>
+        <button class="btn btn-primary" id="btnManageProfile" title="Manage your German & Sri Lankan CVs and contact info">
+          <span class="btn-icon">👤</span> My CVs & Profiles
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    
+    <!-- Hero / Announcement Banner -->
+    <section class="banner-card">
+      <div class="banner-content">
+        <div class="banner-badge">Dual-Corridor Pipeline</div>
+        <h2>Engineering Recruitment in <strong>Germany (28 Agencies)</strong> & <strong>Sri Lanka Tech</strong></h2>
+        <p>1-Click review, bespoke Cover Letter PDF generation, simultaneous Outlook email composition, and automatic portal autofill for Chrome & Edge.</p>
+      </div>
+      <div class="banner-meta">
+        <div class="quick-status">
+          <span class="status-dot online"></span>
+          <span>Outlook Integration: <strong>Connected</strong></span>
+        </div>
+        <div class="quick-status">
+          <span class="status-dot active"></span>
+          <span id="activeProfileLabel">Active CV: <strong>🇩🇪 Germany (Engineering)</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters & Search Toolbar -->
+    <section class="toolbar-section">
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-country="all" id="tabAll">
+          <span class="tab-flag">🌐</span> All Available Jobs (<span id="countAll">0</span>)
+        </button>
+        <button class="filter-tab" data-country="de" id="tabDE">
+          <span class="tab-flag">🇩🇪</span> Germany Private Placement (<span id="countDE">0</span>)
+        </button>
+        <button class="filter-tab" data-country="lk" id="tabLK">
+          <span class="tab-flag">🇱🇰</span> Sri Lanka & Topjobs (<span id="countLK">0</span>)
+        </button>
+        <button class="filter-tab filter-applied" data-status="applied" id="tabApplied">
+          <span class="tab-flag">✅</span> Applied Jobs (<span id="countAppliedTab">0</span>)
+        </button>
+      </div>
+
+      <div class="filter-controls">
+        <!-- German Agency Dropdown -->
+        <div class="select-wrapper" id="agencySelectWrapper">
+          <label for="agencyFilter">German Agency:</label>
+          <select id="agencyFilter">
+            <option value="all">All 28 Agencies</option>
+            <!-- Populated dynamically via JS -->
+          </select>
+        </div>
+
+        <!-- Search input -->
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search mechanical, electronic, automation, robotics, embedded, internship..." autocomplete="off">
+          <button class="clear-search" id="clearSearchBtn" title="Clear">✕</button>
+        </div>
+      </div>
+
+      <!-- Engineering Disciplines & Germany Training Filter Pills -->
+      <div class="discipline-pills-bar" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.08);">
+        <button class="pill-filter active" data-term="all" style="padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color, #374151); background: rgba(255,255,255,0.08); color: #fff;">All Disciplines</button>
+        <button class="pill-filter" data-term="mechatronics" style="padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color, #374151); background: rgba(255,255,255,0.03); color: #9ca3af;">🤖 Mechatronics & Robotics</button>
+        <button class="pill-filter" data-term="automation" style="padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color, #374151); background: rgba(255,255,255,0.03); color: #9ca3af;">⚡ Automation & PLC</button>
+        <button class="pill-filter" data-term="mechanical" style="padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color, #374151); background: rgba(255,255,255,0.03); color: #9ca3af;">⚙️ Mechanical & CAD</button>
+        <button class="pill-filter" data-term="electronic" style="padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color, #374151); background: rgba(255,255,255,0.03); color: #9ca3af;">🔌 Electronic & Embedded</button>
+        <button class="pill-filter" data-term="manufacturing" style="padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color, #374151); background: rgba(255,255,255,0.03); color: #9ca3af;">🏭 Manufacturing & Industrial</button>
+        <button class="pill-filter" data-term="internship" style="padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; border: 1px solid #f59e0b; background: rgba(245, 158, 11, 0.15); color: #fbbf24;">🎓 Germany: Internships & Trainee</button>
+      </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="jobs-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h3 id="sectionTitle">Available Positions</h3>
+          <span class="results-badge" id="resultsCount">Loading...</span>
+        </div>
+        <div class="view-toggles">
+          <button class="view-btn active" id="viewGridBtn" title="Grid View">🔲</button>
+          <button class="view-btn" id="viewListBtn" title="List View">☰</button>
+        </div>
+      </div>
+
+      <!-- Job Cards Container -->
+      <div class="jobs-grid" id="jobsContainer">
+        <!-- Dynamically rendered via app.js -->
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Scanning and loading job positions...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>AeroApply Autonomous Agent • Built for German Engineering Agencies & Sri Lanka Topjobs • Windows Desktop & Outlook Integration</p>
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 1: JOB REVIEW & APPROVE-TO-APPLY CENTER -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="reviewModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-tag" id="modalCountryTag">🇩🇪 GERMANY</span>
+          <h2 id="modalJobTitle">Senior Cloud & Automation Engineer</h2>
+          <p id="modalJobSub">Ferchau GmbH • Munich, Germany • via Ferchau Engineering</p>
+        </div>
+        <button class="modal-close" id="closeReviewModal" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body-split">
+        <!-- Left: Full Job Details & Agency Info -->
+        <div class="modal-col modal-col-details">
+          <div class="info-card">
+            <h4>Role Overview</h4>
+            <div class="meta-pills">
+              <span class="meta-pill" id="modalSalary">€80,000 - €95,000</span>
+              <span class="meta-pill" id="modalWorkType">Full-time</span>
+              <span class="meta-pill" id="modalLocation">Munich (Hybrid)</span>
+            </div>
+            <div class="job-desc-content" id="modalJobDesc">
+              <!-- Job description text -->
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h4>Key Requirements</h4>
+            <ul class="requirements-list" id="modalRequirementsList">
+              <!-- Requirements bullets -->
+            </ul>
+          </div>
+
+          <div class="info-card portal-card">
+            <h4>Direct Portal & Recruiter</h4>
+            <p class="portal-note">Application portal will launch in your default browser (Chrome/Edge):</p>
+            <a href="#" target="_blank" class="portal-link-btn" id="modalPortalLink">
+              <span>🌐 Open Agency Application Portal</span>
+              <span class="external-icon">↗</span>
+            </a>
+            <div class="recruiter-email-wrap">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <label style="margin: 0; font-weight: 600;">Recruiter Contact Email:</label>
+                <div style="display: flex; gap: 6px; align-items: center;">
+                  <span id="modalEmailBadge" style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(16, 185, 129, 0.15); color: #059669; font-weight: 700; display: none;">✓ Verified Recruiter</span>
+                  <button type="button" id="btnDetectEmail" title="Re-scan job post to detect recruiter email" style="background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 4px; padding: 1px 7px; font-size: 11px; cursor: pointer; color: #374151; font-weight: 500;">🔍 Re-detect</button>
+                </div>
+              </div>
+              <input type="email" id="modalContactEmail" value="recruiting@agency.de">
+              <div id="modalOriginalPostLink" style="font-size: 11px; margin-top: 4px; color: #4b5563;"></div>
+            </div>
+          </div>
+
+          <div class="info-card cv-selector-card">
+            <h4>Selected Candidate Profile for Application</h4>
+            <div class="cv-toggle-group">
+              <button class="cv-toggle-btn active" id="btnSelectDECV" data-profile="germany">
+                <span class="flag">🇩🇪</span> German Engineering CV
+              </button>
+              <button class="cv-toggle-btn" id="btnSelectLKCV" data-profile="sriLanka">
+                <span class="flag">🇱🇰</span> Sri Lankan Tech CV
+              </button>
+            </div>
+            <div class="cv-file-status">
+              <span class="file-icon">📎</span>
+              <span id="modalCvFileName">Muhammadhu_Inaam_CV_Germany.pdf</span>
+              <button class="btn-link" id="btnDownloadCvFile" title="Download this CV">Download CV</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Tailored Cover Letter & Outlook Email Draft -->
+        <div class="modal-col modal-col-letter">
+          <!-- Cover Letter Tab Header -->
+          <div class="sub-header-bar">
+            <h4>Bespoke Tailored Cover Letter</h4>
+            <div class="letter-actions">
+              <div class="lang-switch">
+                <button class="lang-btn active" id="langEn">EN</button>
+                <button class="lang-btn" id="langDe">DE</button>
+              </div>
+              <button class="btn btn-sm btn-secondary" id="btnDownloadCoverLetterPdf" title="Download Cover Letter as PDF">
+                <span>📄 Download PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Cover Letter Editor -->
+          <div class="cover-letter-editor-wrap">
+            <textarea id="coverLetterTextarea" rows="14" spellcheck="false" placeholder="Generating tailored cover letter..."></textarea>
+            <div class="editor-footer">
+              <span class="char-count" id="coverLetterCharCount">Custom tailored for role</span>
+              <button class="btn-text" id="btnResetLetter">↺ Re-generate</button>
+            </div>
+          </div>
+
+          <!-- Outlook Email Draft Preview -->
+          <div class="email-preview-box">
+            <div class="email-preview-header">
+              <span class="email-icon">✉️</span>
+              <h5>Outlook Email Draft (Auto-Attached & Ready)</h5>
+              <div style="display: flex; gap: 6px;">
+                <button class="btn-sm-copy" id="btnOpenOutlookDirect" style="background:#0f4c81; color:#fff; border-color:#0f4c81;" title="Open draft in Outlook with attached PDFs">✉️ Open in Outlook</button>
+                <button class="btn-sm-copy" id="btnCopyEmailText" title="Copy email text">Copy Text</button>
+              </div>
+            </div>
+            <div class="email-preview-fields">
+              <div class="email-field-row">
+                <span class="field-tag">TO:</span>
+                <span class="field-val" id="emailToVal">engineering@agency.de</span>
+              </div>
+              <div class="email-field-row" style="align-items: center;">
+                <span class="field-tag">SUBJECT:</span>
+                <input type="text" id="emailSubVal" class="field-val-input" style="flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); border-radius: 4px; color: #f3f4f6; font-size: 12px; font-weight: 600; padding: 4px 8px; outline: none; transition: border-color 0.2s;" value="Application: Mechatronics & Automation Engineer – Muhammadhu Inaam">
+              </div>
+              <div class="email-field-row" style="background: rgba(16, 185, 129, 0.08); border-left: 3px solid #10b981; padding: 6px 10px; margin-bottom: 8px; border-radius: 4px;">
+                <span class="field-tag" style="color: #059669; font-weight: 700;">ATTACHED:</span>
+                <span class="field-val" id="emailAttachmentsVal" style="font-size: 11.5px; color: #065f46;">
+                  📎 <strong>Cover_Letter_Muhammadhu_Inaam.pdf</strong> &nbsp;+&nbsp; 📎 <strong id="attachedCvName">Muhammadhu_Inaam_CV_Germany.pdf</strong>
+                  <span style="display: block; font-size: 10px; color: #047857; margin-top: 2px;">⚡ Automatically attached to Outlook compose upon approval</span>
+                </span>
+              </div>
+              <div class="email-body-preview" id="emailBodyVal">
+                <!-- Body text -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Bottom Approval Bar -->
+      <div class="modal-footer-sticky">
+        <div class="approval-info">
+          <span class="sparkle-icon">✨</span>
+          <div class="approval-desc">
+            <strong>1-Click Automated Dispatch:</strong>
+            <span>Generates Cover Letter PDF • Auto-attaches Cover Letter & CV to Outlook compose • Opens agency portal. Zero placeholders.</span>
+          </div>
+        </div>
+        <div class="approval-actions">
+          <button class="btn btn-secondary" id="btnCancelReview">Cancel</button>
+          <button class="btn btn-gradient-apply" id="btnApproveAndApply">
+            <span class="btn-rocket">🚀</span>
+            <span class="btn-text-main">Approve & Apply (1-Click)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 2: CANDIDATE PROFILES & CV UPLOADER -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="profileModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2>Candidate Profiles & CV Management</h2>
+          <p>Configure both German-specific and Sri Lankan-specific CV profiles, work authorization, and contact details.</p>
+        </div>
+        <button class="modal-close" id="closeProfileModal">✕</button>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" id="tabProfileDE">🇩🇪 German Engineering Profile</button>
+        <button class="modal-tab-btn" id="tabProfileLK">🇱🇰 Sri Lankan Tech Profile</button>
+        <button class="modal-tab-btn" id="tabOutlookSettings">⚙️ Outlook & Email Setup</button>
+      </div>
+
+      <div class="modal-body profile-modal-body">
+        <!-- Form Fields populated via app.js -->
+        <form id="profileForm">
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label>Full Name</label>
+              <input type="text" id="profName" required>
+            </div>
+            <div class="form-group flex-1">
+              <label>Professional Title</label>
+              <input type="text" id="profTitle" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label>Email Address</label>
+              <input type="email" id="profEmail" required>
+            </div>
+            <div class="form-group flex-1">
+              <label>Phone Number</label>
+              <input type="text" id="profPhone" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Current Address / Relocation Readiness</label>
+            <input type="text" id="profAddress" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label>Work Authorization / Visa Status</label>
+              <input type="text" id="profWorkAuth">
+            </div>
+            <div class="form-group flex-1">
+              <label>Languages</label>
+              <input type="text" id="profLanguages">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label>LinkedIn URL</label>
+              <input type="url" id="profLinkedIn">
+            </div>
+            <div class="form-group flex-1">
+              <label>GitHub / Portfolio</label>
+              <input type="url" id="profGitHub">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Executive Summary (Used in Cover Letter Generation)</label>
+            <textarea id="profSummary" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Core Technical Skills (Comma separated)</label>
+            <input type="text" id="profSkills" placeholder="Node.js, Python, Docker, Kubernetes, PLC...">
+          </div>
+
+          <!-- CV File Upload Section -->
+          <div class="cv-upload-box">
+            <h4>Attached CV Document (<span id="profCvLabel">German CV</span>)</h4>
+            <p>Upload your official PDF or DOCX file to attach with applications:</p>
+            <div class="upload-dropzone">
+              <input type="file" id="cvFileInput" accept=".pdf,.doc,.docx" style="display:none;">
+              <div class="dropzone-ui" id="dropzoneTrigger">
+                <span class="upload-cloud">📤</span>
+                <span class="upload-prompt">Click to select or drag & drop your CV file here</span>
+                <span class="upload-sub">Supports PDF, DOC, DOCX up to 10MB</span>
+              </div>
+              <div class="uploaded-file-banner" id="uploadedFileBanner">
+                <span>📎 Current File: <strong id="currentCvFileName">CV_Germany.pdf</strong></span>
+                <a href="#" id="downloadCurrentCvBtn" class="btn-link">Download Current CV</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <span class="save-status" id="profileSaveStatus"></span>
+            <button type="submit" class="btn btn-primary" id="btnSaveProfile">Save Profile Changes</button>
+          </div>
+        </form>
+
+        <!-- Outlook Instructions Tab (Hidden by default) -->
+        <div id="outlookTabContent" style="display: none;">
+          <div class="outlook-guide-box">
+            <div class="guide-header">
+              <span class="guide-icon">📬</span>
+              <h4>How AeroApply Dispatches via Microsoft Outlook</h4>
+            </div>
+            <p>AeroApply connects natively to Microsoft Outlook for Windows using the Windows shell protocol and file staging:</p>
+            <div class="guide-steps">
+              <div class="guide-step">
+                <div class="step-num">1</div>
+                <div class="step-desc">
+                  <strong>Outlook Compose Opens Instantly:</strong>
+                  The recipient, role-specific subject, and professional cover letter summary are already pre-filled.
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">2</div>
+                <div class="step-desc">
+                  <strong>Attachments Folder Revealed:</strong>
+                  Windows Explorer automatically pops up in front of you with the generated tailored <strong>Cover Letter PDF</strong> and your <strong>Selected CV</strong> highlighted.
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">3</div>
+                <div class="step-desc">
+                  <strong>1-Second Drag & Drop:</strong>
+                  Drag the two selected files directly into the open Outlook window, or click Attach File. Done!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 3: BROWSER AUTOFILL ASSISTANT (CHROME & EDGE) -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="autofillModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2>🧩 Chrome & Edge Application Autofill</h2>
+          <p>Easily autofill any job portal (Workday, Personio, Lever, Taleo, Greenhouse, etc.) in 1 click.</p>
+        </div>
+        <button class="modal-close" id="closeAutofillModal">✕</button>
+      </div>
+
+      <div class="modal-body autofill-guide-body">
+        
+        <!-- Option A: 1-Click Bookmarklet -->
+        <div class="option-card highlight">
+          <div class="option-badge">FASTEST • ZERO INSTALLATION</div>
+          <h3>Method 1: Instant Drag & Drop Bookmarklet</h3>
+          <p>Drag this button directly to your Chrome or Edge Bookmarks Bar:</p>
+          
+          <div class="bookmarklet-zone">
+            <a href="javascript:(function(){const p={firstName:'Muhammadhu',lastName:'Inaam',fullName:'Muhammadhu Inaam',email:'mohamedinnam787@gmail.com',phone:'+94 77 089 6608',city:'Kalutara',address:'Beruwala, Kalutara, Sri Lanka',country:'Sri Lanka',linkedin:'https://www.linkedin.com/in/muhammadhu-inaam-698566272/',github:'https://github.com/muhammadhu-inaam',portfolio:'https://www.linkedin.com/in/muhammadhu-inaam-698566272/',workAuth:'German Opportunity Card (Chancenkarte) & EU Blue Card Ready',yearsExp:'2+',summary:'Mechatronics Engineer with 2+ years experience across PLC, HMI, SCADA automation, CNC and robotics.'};const rules=[{p:[/first.*name/i,/given.*name/i,/vorname/i,/^fname$/i,/input-firstName/i],v:p.firstName},{p:[/last.*name/i,/family.*name/i,/nachname/i,/surname/i,/^lname$/i,/input-lastName/i],v:p.lastName},{p:[/confirm.*email/i,/best.*tigen/i,/wiederholen/i,/verif.*email/i,/input-confirmEmail/i],v:p.email},{p:[/e-?mail/i,/elektronische.*post/i,/input-email/i],v:p.email},{p:[/phone/i,/telefon/i,/handy/i,/rufnummer/i,/mobile/i,/tel\b/i,/input-phoneNumber/i],v:p.phone},{p:[/linkedin/i],v:p.linkedin},{p:[/github/i],v:p.github},{p:[/portfolio/i,/website/i,/homepage/i,/webseite/i],v:p.portfolio},{p:[/city/i,/stadt/i,/ort\b/i,/wohnort/i,/location/i],v:p.city},{p:[/postal/i,/zip/i,/plz/i,/postleitzahl/i],v:'10115'},{p:[/address/i,/adresse/i,/anschrift/i,/strasse/i,/straße/i],v:p.address},{p:[/country/i,/land\b/i,/staat/i],v:p.country},{p:[/full.*name/i,/^name$/i,/vollst.*ndig/i],v:p.fullName},{p:[/work.*auth/i,/visa/i,/arbeitserlaubnis/i,/aufenthalt/i],v:p.workAuth},{p:[/experience/i,/erfahrung/i,/berufserfahrung/i],v:p.yearsExp},{p:[/summary/i,/anschreiben/i,/cover.*letter/i,/motivation/i],v:p.summary}];function getDesc(el){let t=[el.id,el.name,el.placeholder,el.title,el.getAttribute('aria-label'),el.getAttribute('data-test'),el.getAttribute('data-testid'),el.getAttribute('data-automation-id'),el.getAttribute('autocomplete'),el.type].filter(Boolean).join(' ');if(el.labels&&el.labels.length){for(let l of el.labels)t+=' '+(l.innerText||l.textContent||'');}if(el.id){try{const l=document.querySelector('label[for=\''+(window.CSS&&CSS.escape?CSS.escape(el.id):el.id)+'\']');if(l)t+=' '+(l.innerText||l.textContent||'');}catch(e){}}const lb=el.getAttribute('aria-labelledby');if(lb){lb.split(/\s+/).forEach(function(i){const o=document.getElementById(i);if(o)t+=' '+(o.innerText||o.textContent||'');});}if(el.previousElementSibling){t+=' '+(el.previousElementSibling.innerText||el.previousElementSibling.textContent||'');}let pNode=el.parentElement;for(let i=0;i<4&&pNode;i++){const items=pNode.querySelectorAll('label,[class*=label],[class*=Label],[class*=title],[class*=legend],span,strong,p');items.forEach(function(item){const txt=(item.innerText||item.textContent||'').trim();if(txt&&txt.length<80)t+=' '+txt;});if(pNode.className&&typeof pNode.className==='string')t+=' '+pNode.className;pNode=pNode.parentElement;}return t.toLowerCase();}function fill(el,val){try{el.focus();const proto=el instanceof HTMLTextAreaElement?window.HTMLTextAreaElement.prototype:window.HTMLInputElement.prototype;const desc=Object.getOwnPropertyDescriptor(proto,'value');if(desc&&desc.set){desc.set.call(el,val);}else{el.value=val;}el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));el.dispatchEvent(new KeyboardEvent('keydown',{bubbles:true,key:'Enter'}));el.dispatchEvent(new KeyboardEvent('keyup',{bubbles:true,key:'Enter'}));el.dispatchEvent(new Event('blur',{bubbles:true}));el.style.transition='all 0.3s ease';el.style.border='2px solid #10b981';el.style.boxShadow='0 0 0 3px rgba(16,185,129,0.3)';el.style.backgroundColor='#ecfdf5';return true;}catch(e){return false;}}let count=0;const elements=Array.from(document.querySelectorAll('input:not([type=hidden]):not([type=submit]):not([type=button]):not([type=checkbox]):not([type=radio]):not([type=file]),textarea'));elements.forEach(function(el){const desc=getDesc(el);for(let i=0;i<rules.length;i++){const r=rules[i];let matched=false;for(let j=0;j<r.p.length;j++){if(r.p[j].test(desc)){matched=true;break;}}if(matched&&r.v){if(fill(el,r.v))count++;break;}}});alert('⚡ AeroApply: Filled '+count+' application fields for '+p.fullName+'!');})();" 
+               class="bookmarklet-btn" 
+               id="bookmarkletLink"
+               title="Drag me to your Chrome/Edge Bookmarks Bar!">
+              ⚡ AeroApply Autofill
+            </a>
+            <button class="btn btn-secondary btn-sm" id="btnCopyBookmarkletCode" title="Copy bookmarklet JavaScript code to clipboard" style="font-size: 11.5px; padding: 6px 12px; margin-left: 8px;">
+              📋 Copy Code
+            </button>
+            <span class="bookmarklet-hint">← Drag this button to your bookmarks bar (Ctrl+Shift+B to show bar)</span>
+          </div>
+
+          <p class="method-sub">Whenever you open any job application portal, just click <strong>⚡ AeroApply Autofill</strong> in your bookmarks bar and the entire form fills in automatically with your details!</p>
+        </div>
+
+        <!-- Option B: Unpacked Extension -->
+        <div class="option-card">
+          <div class="option-badge">BROWSER EXTENSION (EDGE & CHROME)</div>
+          <h3>Method 2: Unpacked Browser Extension</h3>
+          <p>The project includes a ready-to-load Manifest V3 extension inside the <code>extension</code> folder:</p>
+          <ol class="setup-steps">
+            <li>In Chrome or Edge, navigate to <code>chrome://extensions</code> or <code>edge://extensions</code></li>
+            <li>Enable <strong>Developer mode</strong> (toggle in top-right or left sidebar).</li>
+            <li>Click <strong>Load unpacked</strong> button.</li>
+            <li>Select the folder: <code>C:\Job Applying Agent\extension</code></li>
+          </ol>
+          <p class="method-sub">Once loaded, a floating <strong>"⚡ Autofill with AeroApply"</strong> button appears on every job portal!</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 4: IMPORT CUSTOM JOB URL -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="importModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2>🔗 Import Job from Any Website</h2>
+          <p>Paste a job posting URL from Hays, Randstad, Ferchau, Topjobs LK, LinkedIn, etc.</p>
+        </div>
+        <button class="modal-close" id="closeImportModal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Job Posting URL</label>
+          <input type="url" id="importUrlInput" placeholder="https://www.hays.de/jobsuche/... or https://topjobs.lk/..." required>
+        </div>
+        <p class="import-help">AeroApply will automatically fetch the job title, company, requirements, location, recruiter email, and prepare a tailored Cover Letter PDF.</p>
+        
+        <div class="import-status" id="importStatus"></div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary" id="btnCancelImport">Cancel</button>
+          <button class="btn btn-primary" id="btnSubmitImport">
+            <span class="btn-icon">⚡</span> Fetch & Add to Dashboard
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

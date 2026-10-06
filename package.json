@@ -1,0 +1,19 @@
+{
+  "name": "job-applying-agent",
+  "version": "1.0.0",
+  "description": "Autonomous Job Search, Tailored Cover Letter Generator & Outlook Application Dispatcher for Sri Lanka & Germany",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "open": "^10.1.0",
+    "pdfkit": "^0.15.2"
+  }
+}

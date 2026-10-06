@@ -1,0 +1,536 @@
+[
+  {
+    "id": "job-imported-musa9wrm",
+    "title": "Enquiry",
+    "company": "Engineers International",
+    "agency": "Engineers International",
+    "agencyId": "engineers-international",
+    "country": "Germany",
+    "countryCode": "DE",
+    "location": "Germany (Hybrid / On-site)",
+    "workType": "Full-time",
+    "salary": "€65,000 - €82,000 / year",
+    "datePosted": "2026-10-03",
+    "applyUrl": "https://ingenieure-international.de/en/enquiry/",
+    "adUrl": "https://ingenieure-international.de/en/enquiry/",
+    "contactEmail": "info@ingenieure-international.de",
+    "emailVerified": true,
+    "tags": [
+      "Engineering",
+      "Automation",
+      "Germany"
+    ],
+    "description": "Hire Engineers Make a personnel enquiry Request your personalised offer without obligation. After receiving your enquiry, you will receive our offer within 24 hours on working days and 48 hours on weekends and public holidays. .da__toggle-item { border: 1px solid #ececec; margin-bottom: 10px; border-radius: 5px; overflow: hidden; } .da__toggle-title { cursor: pointer; padding: 18px 20px; background: #fdfdfd; margin: 0; font-size: 18px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s ease; color: red !important; font-weight:600 !important; } .da__toggle-title:hover { background: #f5f5f5; } /* Create the Arrow using CSS */ .da__toggle-title::after { content: ''; width: 10px; height: 10px; border-right: 2px solid #333; border-bottom: 2px solid #333; transform: rotate(45deg); /* Downward arrow */ transition: transform 0.3s ease; margin-left: 10px; } /* Rotate arrow when active */ .da__toggle-item.active .da__toggle-title::after { transform: rotate(-135deg); /* Upward arrow */ } /* Content Styling */ .da__toggle-content { max-height: 0; overflow: hidden; visibility: hidden; transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); background: ",
+    "requirements": [
+      "Services\n\n\tTemporary Work\n\tRecruitment",
+      "Mechanical Engineer",
+      "Occupational Safety,",
+      "Electrical Engineer",
+      "Chemical Engineer",
+      "Technical Draughtsman"
+    ],
+    "benefits": [
+      "Direct recruiter outreach with pre-attached CV and custom cover letter",
+      "Competitive salary benchmarked to technical qualifications",
+      "Collaborative engineering environment"
+    ],
+    "status": "applied",
+    "appliedAt": "2026-10-03T11:06:23.317Z",
+    "selectedCvProfile": "germany",
+    "customCoverLetter": "Muhammadhu Inaam\nBeruwala, Kalutara, Sri Lanka (Relocation to Germany Ready)\nPhone: +94 77 089 6608 | Email: mohamedinnam787@gmail.com\nLinkedIn: https://www.linkedin.com/in/muhammadhu-inaam-698566272/\n\nDate: October 3, 2026\n\nTo: The Recruitment & Engineering Team\nEngineers International\nRecruitment Partner: Engineers International\nGermany (Hybrid / On-site)\n\nSubject: Application for Enquiry – Muhammadhu Inaam\n\nDear Hiring Team at Engineers International,\n\nI am writing to express my strong interest in the Enquiry position at Engineers International. As a Mechatronics Engineer with over 2 years of hands-on experience spanning PLC/HMI/SCADA automation, embedded systems, motion control, and CNC machinery, I am eager to apply my technical and commissioning background to your engineering operations.\n\nI hold a Bachelor of Engineering Technology (Hons) in Mechatronics from the University of Sri Jayewardenepura and completed specialized training in Industrial Automation (PLC) and Electronics at the Ceylon German Technical Training Institute (CGTTI). My engineering philosophy is built on bridging conceptual control logic with reliable, physical hardware on the factory floor.\n\nKey highlights of my recent engineering deliveries include:\n• Designing and manufacturing an industrial CNC laser cutter from scratch, integrating the mechanical frame, stepper motion drives, and laser firing safety interlocks\n• Programming and operating industrial PLC, HMI, and SCADA automation lines at AXEL Industries, directly contributing to minimized downtime and increased cycle efficiency\n• Developing an IoT-enabled 3-phase motor controller for 1 kW systems with real-time operational diagnostics and thermal protection\n• Delivering an automated pulse jet dust collector with PLC/HMI integration at DSI Galle, significantly lowering manual maintenance requirements\n• Converting manual machinery into fully automated CNC motion systems with high dimensional repeatability\n\nWork Authorization & Relocation Readiness:\nI am fully prepared for relocation to Germany and meet all criteria for the German Opportunity Card (Chancenkarte) and the fast-track EU Blue Card for skilled technical graduates. I am dedicated to rapid integration and am currently advancing my German language studies alongside full professional English fluency (C2).\n\nEnclosed are my Curriculum Vitae and detailed project documentation. I would welcome the opportunity to discuss how my hands-on automation and mechatronics background aligns with Engineers International's engineering goals in an interview.\n\nThank you very much for your time and consideration.\n\nSincerely,\n\nMuhammadhu Inaam",
+    "customSubject": "Bewerbung als Enquiry – Muhammadhu Inaam",
+    "appliedVia": "Outlook & Portal"
+  },
+  {
+    "id": "job-de-trainee-001",
+    "title": "Junior Mechatronics & Robotics Trainee (Paid Graduate Program)",
+    "company": "Ferchau GmbH",
+    "agency": "Ferchau",
+    "agencyId": "ferchau",
+    "country": "Germany",
+    "countryCode": "DE",
+    "location": "Munich, Bavaria, Germany",
+    "workType": "Full-time (Graduate Trainee)",
+    "salary": "€48,000 - €56,000 / year (Paid Trainee Contract)",
+    "datePosted": "2026-10-02",
+    "applyUrl": "https://www.ferchau.com/de/de/karriere/jobs?search=Mechatronik+Trainee+Roboter",
+    "adUrl": "https://www.ferchau.com/de/de/karriere/jobs?search=Mechatronik+Trainee+Roboter",
+    "contactEmail": "engineering.muenchen@ferchau.com",
+    "emailVerified": true,
+    "tags": [
+      "Mechatronics",
+      "Robotics",
+      "Trainee",
+      "Automation",
+      "Paid Internship"
+    ],
+    "description": "Paid 18-month engineering trainee program in robotics and mechatronic systems commissioning for industrial automation clients across Bavaria. Comprehensive mentoring, German language training support, and relocation assistance for international graduates under the Chancenkarte / EU Blue Card fast-track.",
+    "requirements": [
+      "Bachelor's degree in Mechatronics, Robotics, or Electrical Engineering",
+      "Hands-on experience with industrial automation, PLC programming, or robotic cells",
+      "English fluency (C1/C2); basic German (A1) with strong willingness to advance",
+      "High affinity for factory floor commissioning and troubleshooting"
+    ],
+    "benefits": [
+      "Full paid trainee contract with structured career advancement path",
+      "Relocation and visa support (Opportunity Card / Blue Card guidance)",
+      "Corporate German language course funding"
+    ],
+    "status": "new",
+    "selectedCvProfile": "germany"
+  },
+  {
+    "id": "job-de-intern-002",
+    "title": "Paid Engineering Intern — Industrial Automation & PLC (Praktikum)",
+    "company": "Brunel GmbH",
+    "agency": "Brunel",
+    "agencyId": "brunel",
+    "country": "Germany",
+    "countryCode": "DE",
+    "location": "Stuttgart, Baden-Württemberg, Germany",
+    "workType": "Paid Internship (6-12 Months / Praktikant)",
+    "salary": "€2,100 - €2,600 / month (Paid Internship)",
+    "datePosted": "2026-10-01",
+    "applyUrl": "https://www.brunel.net/de-de/jobs?q=Praktikum+Automatisierungstechnik",
+    "adUrl": "https://www.brunel.net/de-de/jobs?q=Praktikum+Automatisierungstechnik",
+    "contactEmail": "stuttgart.engineering@brunel.net",
+    "emailVerified": true,
+    "tags": [
+      "Automation",
+      "PLC",
+      "Internship",
+      "Praktikum",
+      "Industrial"
+    ],
+    "description": "Paid engineering internship in industrial automation, PLC code verification (Siemens TIA Portal), and test bench validation for automotive and machine tool manufacturing lines in the Stuttgart engineering corridor.",
+    "requirements": [
+      "Enrolled or recently graduated in Mechatronics, Automation, or Electrical Engineering",
+      "Practical foundation in PLC programming, HMI screens, and circuit diagnostics",
+      "Proactive team player with hands-on hardware testing mindset",
+      "Solid English proficiency; basic German is a strong plus"
+    ],
+    "benefits": [
+      "Attractive monthly internship stipend with public transit ticket",
+      "Direct transition opportunity into a full Assistant Engineer role",
+      "Hands-on exposure to European industrial machinery standards"
+    ],
+    "status": "new",
+    "selectedCvProfile": "germany"
+  },
+  {
+    "id": "job-de-assistant-003",
+    "title": "Assistant Mechatronics Engineer (Visa & Relocation Sponsored)",
+    "company": "Ingenieure International",
+    "agency": "Ingenieure International",
+    "agencyId": "ingenieure-international",
+    "country": "Germany",
+    "countryCode": "DE",
+    "location": "Frankfurt am Main, Hesse, Germany",
+    "workType": "Full-time (Entry / Assistant Level)",
+    "salary": "€54,000 - €62,000 / year",
+    "datePosted": "2026-10-01",
+    "applyUrl": "https://ingenieure-international.de/en/job-offers?q=Assistant+Mechatronics+Engineer",
+    "adUrl": "https://ingenieure-international.de/en/job-offers?q=Assistant+Mechatronics+Engineer",
+    "contactEmail": "recruiting@ingenieure-international.de",
+    "emailVerified": true,
+    "tags": [
+      "Mechatronics",
+      "Assistant",
+      "Automation",
+      "Manufacturing"
+    ],
+    "description": "Specialized international engineering placement role supporting senior project engineers in assembling, wiring, programming, and validating automated mechatronics lines. Employer provides full visa sponsorship under the Chancenkarte / EU Blue Card accelerated framework.",
+    "requirements": [
+      "BEng in Mechatronics or Mechanical/Electrical Engineering with CGTTI or practical background",
+      "Demonstrated experience in hardware-software integration (CNC, motor drives, or sensors)",
+      "Readiness to relocate to Germany; English fluency and German A1 learning commitment"
+    ],
+    "benefits": [
+      "Accelerated German work visa and consular paperwork sponsorship",
+      "Temporary accommodation assistance upon arrival in Frankfurt",
+      "Mentored transition to Lead Project Engineer"
+    ],
+    "status": "applied",
+    "selectedCvProfile": "germany",
+    "customCoverLetter": "Muhammadhu Inaam\nBeruwala, Kalutara, Sri Lanka (Relocation to Germany Ready)\nPhone: +94 77 089 6608 | Email: mohamedinnam787@gmail.com\nLinkedIn: https://www.linkedin.com/in/muhammadhu-inaam-698566272/\n\nDate: October 3, 2026\n\nTo: The Recruitment & Engineering Team\nIngenieure International\nRecruitment Partner: Ingenieure International\nFrankfurt am Main, Hesse, Germany\n\nSubject: Application for Assistant Mechatronics Engineer (Visa & Relocation Sponsored) – Muhammadhu Inaam\n\nDear Hiring Team at Ingenieure International,\n\nI am writing to express my strong interest in the Assistant Mechatronics Engineer (Visa & Relocation Sponsored) position at Ingenieure International. As a Mechatronics Engineer with over 2 years of hands-on experience spanning PLC/HMI/SCADA automation, embedded systems, motion control, and CNC machinery, I am eager to apply my technical and commissioning background to your engineering operations.\n\nI hold a Bachelor of Engineering Technology (Hons) in Mechatronics from the University of Sri Jayewardenepura and completed specialized training in Industrial Automation (PLC) and Electronics at the Ceylon German Technical Training Institute (CGTTI). My engineering philosophy is built on bridging conceptual control logic with reliable, physical hardware on the factory floor.\n\nKey highlights of my recent engineering deliveries include:\n• Designing and manufacturing an industrial CNC laser cutter from scratch, integrating the mechanical frame, stepper motion drives, and laser firing safety interlocks\n• Programming and operating industrial PLC, HMI, and SCADA automation lines at AXEL Industries, directly contributing to minimized downtime and increased cycle efficiency\n• Developing an IoT-enabled 3-phase motor controller for 1 kW systems with real-time operational diagnostics and thermal protection\n• Delivering an automated pulse jet dust collector with PLC/HMI integration at DSI Galle, significantly lowering manual maintenance requirements\n• Converting manual machinery into fully automated CNC motion systems with high dimensional repeatability\n\nWork Authorization & Relocation Readiness:\nI am fully prepared for relocation to Germany and meet all criteria for the German Opportunity Card (Chancenkarte) and the fast-track EU Blue Card for skilled technical graduates. I am dedicated to rapid integration and am currently advancing my German language studies alongside full professional English fluency (C2).\n\nEnclosed are my Curriculum Vitae and detailed project documentation. I would welcome the opportunity to discuss how my hands-on automation and mechatronics background aligns with Ingenieure International's engineering goals in an interview.\n\nThank you very much for your time and consideration.\n\nSincerely,\n\nMuhammadhu Inaam",
+    "customSubject": "Bewerbung als Assistant Mechatronics Engineer (Visa & Relocation Sponsored) – Muhammadhu Inaam",
+    "appliedAt": "2026-10-03T11:00:58.953Z",
+    "appliedVia": "Outlook & Portal"
+  },
+  {
+    "id": "job-de-assistant-004",
+    "title": "Assistant Electrical & Electronics Engineer (Trainee Program)",
+    "company": "Hays Professional Solutions",
+    "agency": "Hays",
+    "agencyId": "hays",
+    "country": "Germany",
+    "countryCode": "DE",
+    "location": "Nuremberg, Bavaria, Germany",
+    "workType": "Full-time (Junior / Assistant)",
+    "salary": "€52,000 - €60,000 / year",
+    "datePosted": "2026-09-29",
+    "applyUrl": "https://www.hays.de/jobsuche/stellenangebote-jobs?q=Junior+Elektroingenieur+Elektronik",
+    "adUrl": "https://www.hays.de/jobsuche/stellenangebote-jobs?q=Junior+Elektroingenieur+Elektronik",
+    "contactEmail": "engineering.nuernberg@hays.de",
+    "emailVerified": true,
+    "tags": [
+      "Electronic",
+      "Electrical",
+      "Assistant",
+      "Trainee",
+      "Power Electronics"
+    ],
+    "description": "Assistant engineer role within industrial power electronics, 3-phase motor controllers, and electronic circuit board diagnostics. Work alongside senior hardware designers on inverter drives and renewable energy equipment.",
+    "requirements": [
+      "Engineering degree in Electronics, Electrical, or Mechatronics Engineering",
+      "Familiarity with circuit design, PCB layout, oscilloscope testing, and power electronics",
+      "Analytical mindset and attention to electrical safety standards (DIN EN)"
+    ],
+    "benefits": [
+      "Structured 12-month mentorship under Senior Principal Engineers",
+      "Overtime compensation and flexible working models",
+      "Chancenkarte visa support for overseas talent"
+    ],
+    "status": "applied",
+    "selectedCvProfile": "germany",
+    "appliedAt": "2026-10-03T09:34:24.519Z",
+    "appliedVia": "Outlook & Portal"
+  },
+  {
+    "id": "job-de-embedded-005",
+    "title": "Embedded Systems & Hardware Integration Trainee",
+    "company": "Akkodis Germany",
+    "agency": "Akkodis",
+    "agencyId": "akkodis",
+    "country": "Germany",
+    "countryCode": "DE",
+    "location": "Berlin, Germany",
+    "workType": "Full-time (Graduate Trainee)",
+    "salary": "€50,000 - €58,000 / year",
+    "datePosted": "2026-09-28",
+    "applyUrl": "https://www.akkodis.com/de-de/careers/job-search?q=Embedded+Systems+Hardware+Trainee",
+    "adUrl": "https://www.akkodis.com/de-de/careers/job-search?q=Embedded+Systems+Hardware+Trainee",
+    "contactEmail": "berlin.careers@akkodis.com",
+    "emailVerified": true,
+    "tags": [
+      "Embedded",
+      "Electronic",
+      "C++",
+      "Trainee",
+      "IoT"
+    ],
+    "description": "Develop embedded firmware in C/C++ and integrate microcontrollers with sensors and communication buses (CAN, Modbus, SPI) for smart industrial machinery and IoT applications.",
+    "requirements": [
+      "BEng in Mechatronics, Electronics, or Computer Engineering",
+      "Strong C/C++ programming and microcontroller hardware debugging skills",
+      "Hands-on projects with IoT telemetry, motor control, or sensor interfacing"
+    ],
+    "benefits": [
+      "Dynamic tech hub in Berlin with modern prototyping lab access",
+      "Relocation bonus and language training allowance"
+    ],
+    "status": "applied",
+    "selectedCvProfile": "germany",
+    "appliedAt": "2026-10-03T09:58:05.194Z",
+    "appliedVia": "Outlook & Portal"
+  },
+  {
+    "id": "job-de-industrial-006",
+    "title": "Industrial & Manufacturing Automation Specialist",
+    "company": "Bertrandt AG",
+    "agency": "Bertrandt",
+    "agencyId": "bertrandt",
+    "country": "Germany",
+    "countryCode": "DE",
+    "location": "Ingolstadt, Bavaria, Germany",
+    "workType": "Full-time",
+    "salary": "€60,000 - €70,000 / year",
+    "datePosted": "2026-09-27",
+    "applyUrl": "https://www.bertrandt.com/karriere/stellenangebote?q=Fertigungsautomatisierung+Industrial",
+    "adUrl": "https://www.bertrandt.com/karriere/stellenangebote?q=Fertigungsautomatisierung+Industrial",
+    "contactEmail": "karriere-ingolstadt@bertrandt.com",
+    "emailVerified": true,
+    "tags": [
+      "Industrial",
+      "Manufacturing",
+      "Automation",
+      "PLC",
+      "CNC"
+    ],
+    "description": "Optimize automated production lines, CNC machining cells, and robotic material handling systems for premier automotive assembly facilities.",
+    "requirements": [
+      "Degree in Industrial, Manufacturing, or Mechatronics Engineering",
+      "Experience with CNC manufacturing, PLC ladder logic, and cycle time optimization",
+      "Good command of English; German A1/A2 learning readiness"
+    ],
+    "benefits": [
+      "Long-term career perspective in German industrial engineering",
+      "Corporate training academy and attractive pension scheme"
+    ],
+    "status": "applied",
+    "selectedCvProfile": "germany",
+    "customCoverLetter": "Muhammadhu Inaam\nBeruwala, Kalutara, Sri Lanka (Relocation to Germany Ready)\nPhone: +94 77 089 6608 | Email: mohamedinnam787@gmail.com\nLinkedIn: https://www.linkedin.com/in/muhammadhu-inaam-698566272/\n\nDate: October 3, 2026\n\nTo: The Recruitment & Engineering Team\nBertrandt AG\nRecruitment Partner: Bertrandt\nIngolstadt, Bavaria, Germany\n\nSubject: Application for Industrial & Manufacturing Automation Specialist – Muhammadhu Inaam\n\nDear Hiring Team at Bertrandt AG,\n\nI am writing to express my strong interest in the Industrial & Manufacturing Automation Specialist position at Bertrandt AG. As a Mechatronics Engineer with over 2 years of hands-on experience spanning PLC/HMI/SCADA automation, embedded systems, motion control, and CNC machinery, I am eager to apply my technical and commissioning background to your engineering operations.\n\nI hold a Bachelor of Engineering Technology (Hons) in Mechatronics from the University of Sri Jayewardenepura and completed specialized training in Industrial Automation (PLC) and Electronics at the Ceylon German Technical Training Institute (CGTTI). My engineering philosophy is built on bridging conceptual control logic with reliable, physical hardware on the factory floor.\n\nKey highlights of my recent engineering deliveries include:\n• Designing and manufacturing an industrial CNC laser cutter from scratch, integrating the mechanical frame, stepper motion drives, and laser firing safety interlocks\n• Programming and operating industrial PLC, HMI, and SCADA automation lines at AXEL Industries, directly contributing to minimized downtime and increased cycle efficiency\n• Developing an IoT-enabled 3-phase motor controller for 1 kW systems with real-time operational diagnostics and thermal protection\n• Delivering an automated pulse jet dust collector with PLC/HMI integration at DSI Galle, significantly lowering manual maintenance requirements\n• Converting manual machinery into fully automated CNC motion systems with high dimensional repeatability\n\nWork Authorization & Relocation Readiness:\nI am fully prepared for relocation to Germany and meet all criteria for the German Opportunity Card (Chancenkarte) and the fast-track EU Blue Card for skilled technical graduates. I am dedicated to rapid integration and am currently advancing my German language studies alongside full professional English fluency (C2).\n\nEnclosed are my Curriculum Vitae and detailed project documentation. I would welcome the opportunity to discuss how my hands-on automation and mechatronics background aligns with Bertrandt AG's engineering goals in an interview.\n\nThank you very much for your time and consideration.\n\nSincerely,\n\nMuhammadhu Inaam",
+    "customSubject": "Bewerbung als Industrial & Manufacturing Automation Specialist – Muhammadhu Inaam",
+    "appliedAt": "2026-10-03T10:59:53.744Z",
+    "appliedVia": "Outlook & Portal"
+  },
+  {
+    "id": "job-de-mechanical-007",
+    "title": "Junior Mechanical & CAD Design Engineer (SolidWorks / 3D)",
+    "company": "Alten Technology",
+    "agency": "Alten",
+    "agencyId": "alten",
+    "country": "Germany",
+    "countryCode": "DE",
+    "location": "Hamburg, Germany",
+    "workType": "Full-time (Junior Level)",
+    "salary": "€52,000 - €60,000 / year",
+    "datePosted": "2026-09-26",
+    "applyUrl": "https://www.alten-technology.com/karriere/jobs?search=Junior+Mechanical+CAD+Engineer",
+    "adUrl": "https://www.alten-technology.com/karriere/jobs?search=Junior+Mechanical+CAD+Engineer",
+    "contactEmail": "hamburg.jobs@alten-technology.com",
+    "emailVerified": true,
+    "tags": [
+      "Mechanical",
+      "CAD",
+      "SolidWorks",
+      "Manufacturing",
+      "3D Printing"
+    ],
+    "description": "Design mechanical enclosures, tooling fixtures, and electro-mechanical assemblies using SolidWorks and CAD. Oversee 3D printed prototypes and liaise with CNC machine shops.",
+    "requirements": [
+      "Degree in Mechanical or Mechatronics Engineering",
+      "Proficient with SolidWorks or equivalent 3D CAD modeling suites",
+      "Understanding of GD&T, manufacturing tolerances, and materials selection"
+    ],
+    "benefits": [
+      "International project scope in aerospace and specialized machinery",
+      "Mentored engineering development program"
+    ],
+    "status": "new",
+    "selectedCvProfile": "germany"
+  },
+  {
+    "id": "job-topjobs-0001555659",
+    "title": "AS 400 & Industrial Systems Engineer (20)",
+    "company": "Micronet Global Services (Pvt) Ltd",
+    "agency": "Topjobs Sri Lanka",
+    "agencyId": "topjobs-lk",
+    "country": "Sri Lanka",
+    "countryCode": "LK",
+    "location": "Colombo, Sri Lanka",
+    "workType": "Full-time",
+    "salary": "Competitive (LKR Industry Benchmark)",
+    "datePosted": "2026-10-03",
+    "applyUrl": "https://www.topjobs.lk/employer/JobAdvertismentServlet?ac=0000000419&jc=0001555659&ec=0000000552",
+    "adUrl": "https://www.topjobs.lk/employer/JobAdvertismentServlet?ac=0000000419&jc=0001555659&ec=0000000552",
+    "contactEmail": "hr8@micronetglobal.net",
+    "emailVerified": true,
+    "tags": [
+      "Industrial",
+      "Electronic",
+      "Topjobs LK",
+      "Engineering"
+    ],
+    "description": "Direct engineering vacancy for AS 400 and industrial server diagnostics at Micronet Global Services. Sourced directly from Topjobs Sri Lanka with verified recruiter email attached.",
+    "requirements": [
+      "Hands-on technical engineering experience and qualifications",
+      "Strong background in electrical, electronics, or server automation systems",
+      "Good teamwork and communication skills"
+    ],
+    "benefits": [
+      "Direct recruiter contact attachment (hr8@micronetglobal.net)",
+      "Attractive local industrial remuneration package"
+    ],
+    "status": "applied",
+    "selectedCvProfile": "sriLanka",
+    "appliedAt": "2026-10-03T09:19:05.922Z",
+    "appliedVia": "Outlook & Portal"
+  },
+  {
+    "id": "job-topjobs-0001555660",
+    "title": "Engineering & Production Management Trainee (Borella)",
+    "company": "Timex Garments (Pvt) Limited",
+    "agency": "Topjobs Sri Lanka",
+    "agencyId": "topjobs-lk",
+    "country": "Sri Lanka",
+    "countryCode": "LK",
+    "location": "Colombo / Borella, Sri Lanka",
+    "workType": "Full-time (Trainee)",
+    "salary": "Competitive (LKR Industry Benchmark)",
+    "datePosted": "2026-10-03",
+    "applyUrl": "https://www.topjobs.lk/employer/JobAdvertismentServlet?ac=0000000053&jc=0001555660&ec=0000000057",
+    "adUrl": "https://www.topjobs.lk/employer/JobAdvertismentServlet?ac=0000000053&jc=0001555660&ec=0000000057",
+    "contactEmail": "opportunities@timexsl.com",
+    "emailVerified": true,
+    "tags": [
+      "Manufacturing",
+      "Industrial",
+      "Trainee",
+      "Topjobs LK"
+    ],
+    "description": "Direct manufacturing and industrial management trainee vacancy at Timex Garments. Sourced directly from Topjobs Sri Lanka with direct recruiter contact verified.",
+    "requirements": [
+      "Degree in Mechanical, Manufacturing, or Mechatronics Engineering",
+      "Knowledge of production planning, Primavera P6, or lean manufacturing",
+      "Excellent analytical and interpersonal communication skills"
+    ],
+    "benefits": [
+      "Direct recruiter contact attachment (opportunities@timexsl.com)",
+      "Structured industrial leadership development program"
+    ],
+    "status": "applied",
+    "selectedCvProfile": "sriLanka",
+    "customCoverLetter": "Muhammadhu Inaam\nBeruwala, Kalutara, Sri Lanka\nPhone: +94 77 089 6608 | Email: mohamedinnam787@gmail.com\nLinkedIn: https://www.linkedin.com/in/muhammadhu-inaam-698566272/\n\nDate: October 3, 2026\n\nTo: The Recruitment & Engineering Team\nTimex Garments (Pvt) Limited\nRecruitment Partner: Topjobs Sri Lanka\nColombo / Borella, Sri Lanka\n\nSubject: Application for Engineering & Production Management  (Borella) – Muhammadhu Inaam\n\nDear Hiring Team at Timex Garments (Pvt) Limited,\n\nI am writing to express my strong interest in the Engineering & Production Management  (Borella) position at Timex Garments (Pvt) Limited. As a Mechatronics Engineer with over 2 years of hands-on experience spanning PLC/HMI/SCADA automation, embedded systems, motion control, and CNC machinery, I am eager to apply my technical and commissioning background to your engineering operations.\n\nI hold a Bachelor of Engineering Technology (Hons) in Mechatronics from the University of Sri Jayewardenepura and completed specialized training in Industrial Automation (PLC) and Electronics at the Ceylon German Technical Training Institute (CGTTI). My engineering philosophy is built on bridging conceptual control logic with reliable, physical hardware on the factory floor.\n\nKey highlights of my recent engineering deliveries include:\n• Designing and manufacturing an industrial CNC laser cutter from scratch, integrating the mechanical frame, stepper motion drives, and laser firing safety interlocks\n• Programming and operating industrial PLC, HMI, and SCADA automation lines at AXEL Industries, directly contributing to minimized downtime and increased cycle efficiency\n• Developing an IoT-enabled 3-phase motor controller for 1 kW systems with real-time operational diagnostics and thermal protection\n• Delivering an automated pulse jet dust collector with PLC/HMI integration at DSI Galle, significantly lowering manual maintenance requirements\n• Converting manual machinery into fully automated CNC motion systems with high dimensional repeatability\n\nAvailability & Engagement:\nI am based in Kalutara / Western Province and available for immediate on-site or hybrid deployment in Sri Lanka, bringing proven field experience across automated production environments and equipment commissioning.\n\nEnclosed are my Curriculum Vitae and detailed project documentation. I would welcome the opportunity to discuss how my hands-on automation and mechatronics background aligns with Timex Garments (Pvt) Limited's engineering goals in an interview.\n\nThank you very much for your time and consideration.\n\nSincerely,\n\nMuhammadhu Inaam",
+    "customSubject": "Application for Engineering & Production Management  (Borella) – Muhammadhu Inaam",
+    "appliedAt": "2026-10-03T10:59:16.701Z",
+    "appliedVia": "Outlook & Portal"
+  },
+  {
+    "id": "job-lk-dsi-001",
+    "title": "Mechatronics & Industrial Automation Engineer",
+    "company": "DSI Samson Group",
+    "agency": "Direct / Topjobs LK",
+    "agencyId": "dsi-samson",
+    "country": "Sri Lanka",
+    "countryCode": "LK",
+    "location": "Galle & Colombo, Sri Lanka",
+    "workType": "Full-time",
+    "salary": "LKR 450,000 - 600,000 / month",
+    "datePosted": "2026-10-02",
+    "applyUrl": "https://www.dsisamson.com/careers",
+    "adUrl": "https://www.dsisamson.com/careers",
+    "contactEmail": "careers@dsisamson.com",
+    "emailVerified": true,
+    "tags": [
+      "Mechatronics",
+      "Automation",
+      "PLC",
+      "Industrial",
+      "Manufacturing"
+    ],
+    "description": "Lead automation engineering lines, PLC troubleshooting (Siemens / Delta), sensor networks, and pneumatics across manufacturing plants in Galle and Western Province.",
+    "requirements": [
+      "BEng in Mechatronics or Mechanical / Electrical Engineering",
+      "Demonstrated track record with PLC/SCADA industrial deployments",
+      "Prior exposure to dust collectors, conveyors, or automated pneumatic systems"
+    ],
+    "benefits": [
+      "Direct corporate placement with leading industrial conglomerate",
+      "Annual performance bonus and health insurance coverage"
+    ],
+    "status": "applied",
+    "selectedCvProfile": "sriLanka",
+    "appliedAt": "2026-10-03T09:21:14.536Z",
+    "appliedVia": "Outlook & Portal"
+  },
+  {
+    "id": "job-lk-brandix-002",
+    "title": "Automation & Controls Engineer (Process Automation & Robotics)",
+    "company": "Brandix Apparel Solutions",
+    "agency": "Direct / Topjobs LK",
+    "agencyId": "brandix",
+    "country": "Sri Lanka",
+    "countryCode": "LK",
+    "location": "Biyagama Export Zone, Sri Lanka",
+    "workType": "Full-time",
+    "salary": "LKR 420,000 - 550,000 / month",
+    "datePosted": "2026-10-01",
+    "applyUrl": "https://brandix.com/careers",
+    "adUrl": "https://brandix.com/careers",
+    "contactEmail": "careers@brandix.com",
+    "emailVerified": true,
+    "tags": [
+      "Automation",
+      "Robotics",
+      "Manufacturing",
+      "PLC",
+      "Mechatronics"
+    ],
+    "description": "Spearhead robotic material automation, PLC control logic, and electro-mechanical maintenance in high-efficiency industrial manufacturing facilities.",
+    "requirements": [
+      "Degree in Mechatronics, Electrical, or Mechanical Engineering",
+      "CGTTI industrial training or equivalent field expertise in PLC & E2",
+      "Ability to troubleshoot automated assembly equipment and motion drives"
+    ],
+    "benefits": [
+      "Competitive executive compensation package",
+      "Cutting-edge industrial IoT and automation testbed"
+    ],
+    "status": "new",
+    "selectedCvProfile": "sriLanka"
+  },
+  {
+    "id": "job-lk-mas-003",
+    "title": "Manufacturing & Mechanical Systems Development Engineer",
+    "company": "MAS Holdings (Matrix Automation)",
+    "agency": "Direct / Topjobs LK",
+    "agencyId": "mas-holdings",
+    "country": "Sri Lanka",
+    "countryCode": "LK",
+    "location": "Thulhiriya / Colombo, Sri Lanka",
+    "workType": "Full-time",
+    "salary": "LKR 480,000 - 620,000 / month",
+    "datePosted": "2026-09-30",
+    "applyUrl": "https://www.masholdings.com/careers/",
+    "adUrl": "https://www.masholdings.com/careers/",
+    "contactEmail": "careers@masholdings.com",
+    "emailVerified": true,
+    "tags": [
+      "Mechanical",
+      "Manufacturing",
+      "SolidWorks",
+      "CNC",
+      "Mechatronics"
+    ],
+    "description": "Design custom automated machinery, CNC tooling, and digital manufacturing mechanisms within MAS Holdings' internal engineering innovation division.",
+    "requirements": [
+      "Degree in Mechatronics or Mechanical Engineering",
+      "SolidWorks 3D CAD modeling, CNC conversion experience, and prototype fabrication",
+      "Team player with passion for creating custom hardware mechanisms"
+    ],
+    "benefits": [
+      "Top-tier corporate compensation and medical benefits",
+      "Work in one of South Asia's premier engineering design studios"
+    ],
+    "status": "new",
+    "selectedCvProfile": "sriLanka"
+  },
+  {
+    "id": "job-lk-hayleys-004",
+    "title": "Solar & Industrial Electrical Systems Engineer",
+    "company": "Hayleys Solar",
+    "agency": "Direct / Topjobs LK",
+    "agencyId": "hayleys",
+    "country": "Sri Lanka",
+    "countryCode": "LK",
+    "location": "Colombo / Island-wide, Sri Lanka",
+    "workType": "Full-time",
+    "salary": "LKR 400,000 - 520,000 / month",
+    "datePosted": "2026-09-29",
+    "applyUrl": "https://www.hayleys.com/careers/",
+    "adUrl": "https://www.hayleys.com/careers/",
+    "contactEmail": "solar.careers@hayleys.com",
+    "emailVerified": true,
+    "tags": [
+      "Electrical",
+      "Electronic",
+      "Industrial",
+      "Power Electronics"
+    ],
+    "description": "Commission commercial and industrial three-phase on-grid solar systems, high-voltage inverters, telemetry loggers, and power electronic distribution boards.",
+    "requirements": [
+      "BEng in Electrical, Mechatronics, or Electronic Engineering",
+      "Practical experience with three-phase grid installations and inverter testing",
+      "Strong safety compliance and field commissioning diligence"
+    ],
+    "benefits": [
+      "Prestigious Hayleys group benefits and transport allowances",
+      "Career growth in Sri Lanka's fastest expanding renewable energy firm"
+    ],
+    "status": "applied",
+    "selectedCvProfile": "sriLanka",
+    "appliedAt": "2026-10-03T09:22:46.263Z",
+    "appliedVia": "Outlook & Portal"
+  }
+]
