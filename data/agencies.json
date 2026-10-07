@@ -5,7 +5,13 @@
     "url": "https://www.hays.de",
     "careersUrl": "https://www.hays.de/jobsuche",
     "focus": "Engineering, Industrial Automation, Software, Construction",
-    "domains": ["Engineering", "Industrial", "Automation", "Embedded Systems", "IT"],
+    "domains": [
+      "Engineering",
+      "Industrial",
+      "Automation",
+      "Embedded Systems",
+      "IT"
+    ],
     "location": "Nationwide (Frankfurt, Munich, Berlin, Hamburg, Cologne)",
     "description": "One of the leading engineering and specialized IT recruitment agencies in Germany."
   },
@@ -15,7 +21,12 @@
     "url": "https://www.randstad.de",
     "careersUrl": "https://www.randstad.de/jobs",
     "focus": "Broad Technical, Mechanical & Electrical Engineering",
-    "domains": ["Mechanical Engineering", "Electrical", "Production", "IT Services"],
+    "domains": [
+      "Mechanical Engineering",
+      "Electrical",
+      "Production",
+      "IT Services"
+    ],
     "location": "Eschborn / Nationwide",
     "description": "One of Germany's largest staffing providers with dedicated engineering desks."
   },
@@ -25,7 +36,12 @@
     "url": "https://www.gulp.de",
     "careersUrl": "https://www.gulp.de/projekte-jobs",
     "focus": "IT & Engineering Contractors, High-Tech Freelancers",
-    "domains": ["Software Development", "DevOps", "Embedded", "Cloud Systems"],
+    "domains": [
+      "Software Development",
+      "DevOps",
+      "Embedded",
+      "Cloud Systems"
+    ],
     "location": "Munich / Nationwide / Remote",
     "description": "Specialized division connecting IT experts and engineers with premier German projects."
   },
@@ -35,7 +51,12 @@
     "url": "https://www.michaelpage.de",
     "careersUrl": "https://www.michaelpage.de/jobs",
     "focus": "Engineering, Manufacturing, Technical Leadership",
-    "domains": ["Manufacturing", "Automotive", "Plant Engineering", "Technical Operations"],
+    "domains": [
+      "Manufacturing",
+      "Automotive",
+      "Plant Engineering",
+      "Technical Operations"
+    ],
     "location": "Düsseldorf, Frankfurt, Munich, Stuttgart",
     "description": "Top-tier recruitment consultancy specializing in mid-to-senior technical roles."
   },
@@ -45,7 +66,12 @@
     "url": "https://www.manpower.de",
     "careersUrl": "https://www.manpower.de/de/jobsuche",
     "focus": "Technical Engineering, Industrial & Automation Placements",
-    "domains": ["Industrial Engineering", "Mechatronics", "Logistics", "IT Support"],
+    "domains": [
+      "Industrial Engineering",
+      "Mechatronics",
+      "Logistics",
+      "IT Support"
+    ],
     "location": "Frankfurt / Nationwide",
     "description": "Global workforce solutions leader offering specialized technical placement across Germany."
   },
@@ -55,7 +81,12 @@
     "url": "https://www.adecco.de",
     "careersUrl": "https://www.adecco.de/jobsuche",
     "focus": "Engineering, Industrial Services & Technical Support",
-    "domains": ["Robotics", "Automation", "Quality Assurance", "Plant Engineering"],
+    "domains": [
+      "Robotics",
+      "Automation",
+      "Quality Assurance",
+      "Plant Engineering"
+    ],
     "location": "Düsseldorf / Nationwide",
     "description": "Extensive placement network with dedicated technical and industrial branches."
   },
@@ -65,7 +96,12 @@
     "url": "https://www.dis-ag.com",
     "careersUrl": "https://www.dis-ag.com/jobs",
     "focus": "Engineering, Information Technology & Digital Infrastructure",
-    "domains": ["Systems Engineering", "Software Engineering", "PLC Programming", "CAD/CAE"],
+    "domains": [
+      "Systems Engineering",
+      "Software Engineering",
+      "PLC Programming",
+      "CAD/CAE"
+    ],
     "location": "Frankfurt / Nationwide",
     "description": "Specialist recruitment firm highly acclaimed for engineering and IT placements in Germany."
   },
@@ -75,7 +111,12 @@
     "url": "https://www.roberthalf.de",
     "careersUrl": "https://www.roberthalf.de/de/jobs",
     "focus": "IT, Software Engineering, Technology Leadership",
-    "domains": ["Cloud Engineering", "Full Stack", "Data Engineering", "ERP Systems"],
+    "domains": [
+      "Cloud Engineering",
+      "Full Stack",
+      "Data Engineering",
+      "ERP Systems"
+    ],
     "location": "Frankfurt, Munich, Berlin, Hamburg",
     "description": "Premier recruiter specializing in technology, IT infrastructure, and senior engineering roles."
   },
@@ -85,7 +126,12 @@
     "url": "https://www.brunel.net/de",
     "careersUrl": "https://www.brunel.net/de-de/jobs",
     "focus": "Engineering Contractors, Technical Services & Work-Permit Logistics",
-    "domains": ["Automotive", "Aerospace", "Energy", "Software & Electronics"],
+    "domains": [
+      "Automotive",
+      "Aerospace",
+      "Energy",
+      "Software & Electronics"
+    ],
     "location": "Bremen / Nationwide",
     "description": "Top technical contractor specialist renowned for international engineer onboarding and permit support."
   },
@@ -95,7 +141,12 @@
     "url": "https://www.ferchau.com",
     "careersUrl": "https://www.ferchau.com/de/de/karriere/jobs",
     "focus": "Germany's Premier Engineering Staffing & Development Firm",
-    "domains": ["Automotive Engineering", "Industrial IoT", "Embedded C/C++", "Mechanical Design"],
+    "domains": [
+      "Automotive Engineering",
+      "Industrial IoT",
+      "Embedded C/C++",
+      "Mechanical Design"
+    ],
     "location": "Gummersbach / 100+ Branches Nationwide",
     "description": "The largest engineering and IT service provider in Germany with thousands of direct engineering roles."
   },
@@ -105,7 +156,12 @@
     "url": "https://www.bertrandt.com",
     "careersUrl": "https://www.bertrandt.com/karriere/stellenangebote",
     "focus": "Automotive Engineering, Autonomous Driving, Industrial Solutions",
-    "domains": ["Automotive", "Electronics", "Battery Systems", "Autonomous Systems"],
+    "domains": [
+      "Automotive",
+      "Electronics",
+      "Battery Systems",
+      "Autonomous Systems"
+    ],
     "location": "Ehningen, Munich, Stuttgart, Wolfsburg",
     "description": "Premier engineering partner for German automotive, aerospace, and high-tech manufacturing."
   },
@@ -115,7 +171,12 @@
     "url": "https://www.akkodis.com/de-de",
     "careersUrl": "https://www.akkodis.com/de-de/careers/job-search",
     "focus": "Smart Industry, Engineering Consulting & Digital Transformation",
-    "domains": ["Systems Engineering", "Embedded Systems", "Robotics", "Cloud Architecture"],
+    "domains": [
+      "Systems Engineering",
+      "Embedded Systems",
+      "Robotics",
+      "Cloud Architecture"
+    ],
     "location": "Sindelfingen / Nationwide",
     "description": "Global engineering powerhouse combining high-tech digital solutions with deep engineering expertise."
   },
@@ -125,7 +186,12 @@
     "url": "https://www.alten.de",
     "careersUrl": "https://www.alten.de/karriere/jobangebote",
     "focus": "Technology Consulting & High-Tech Engineering Projects",
-    "domains": ["Embedded Software", "Aerospace", "Medical Devices", "Telecom"],
+    "domains": [
+      "Embedded Software",
+      "Aerospace",
+      "Medical Devices",
+      "Telecom"
+    ],
     "location": "Munich, Stuttgart, Hamburg, Frankfurt",
     "description": "Renowned European engineering consulting giant driving innovation across German industry."
   },
@@ -135,7 +201,11 @@
     "url": "https://www.amadeus-fire.de",
     "careersUrl": "https://www.amadeus-fire.de/jobangebote",
     "focus": "Technical, IT & Professional Services Placement",
-    "domains": ["IT Infrastructure", "Database Engineering", "Enterprise Systems"],
+    "domains": [
+      "IT Infrastructure",
+      "Database Engineering",
+      "Enterprise Systems"
+    ],
     "location": "Frankfurt / Nationwide",
     "description": "Leading specialist personnel service provider across German metropolitan regions."
   },
@@ -145,7 +215,11 @@
     "url": "https://www.piening-personal.de",
     "careersUrl": "https://www.piening-personal.de/fuer-bewerber/jobsuche",
     "focus": "Industrial, Technical & Automation Placements",
-    "domains": ["Machine Building", "Industrial Maintenance", "Automation Tech"],
+    "domains": [
+      "Machine Building",
+      "Industrial Maintenance",
+      "Automation Tech"
+    ],
     "location": "Bielefeld / Nationwide",
     "description": "Family-owned nationwide staffing specialist trusted by German Mittelstand companies."
   },
@@ -155,7 +229,11 @@
     "url": "https://www.trenkwalder.com/de-de",
     "careersUrl": "https://de.trenkwalder.com/jobs",
     "focus": "Technical Staffing, Industrial Engineering & IT Placements",
-    "domains": ["Manufacturing Tech", "Electrical Systems", "Operations Management"],
+    "domains": [
+      "Manufacturing Tech",
+      "Electrical Systems",
+      "Operations Management"
+    ],
     "location": "Munich / Nationwide",
     "description": "Leading Central European personnel service company operating across German industrial hubs."
   },
@@ -165,7 +243,11 @@
     "url": "https://www.tempton.de",
     "careersUrl": "https://www.tempton.de/jobsuche",
     "focus": "Technical Experts, Engineering & Digital Workforce",
-    "domains": ["Industrial Tech", "Control Systems", "Logistics Automation"],
+    "domains": [
+      "Industrial Tech",
+      "Control Systems",
+      "Logistics Automation"
+    ],
     "location": "Essen / Nationwide (150+ branches)",
     "description": "Fast-growing full-service HR provider with dedicated Technical and Engineering business units."
   },
@@ -175,7 +257,11 @@
     "url": "https://www.persona.de",
     "careersUrl": "https://www.persona.de/stellenangebote",
     "focus": "Specialist Placements in Technical, Production & Engineering",
-    "domains": ["Quality Engineering", "Production Systems", "Process Engineering"],
+    "domains": [
+      "Quality Engineering",
+      "Production Systems",
+      "Process Engineering"
+    ],
     "location": "Lüdenscheid / Nationwide",
     "description": "Established German staffing pioneer with over 200 branches connecting specialists to industry."
   },
@@ -185,7 +271,11 @@
     "url": "https://www.pluss.de",
     "careersUrl": "https://www.pluss.de/fuer-bewerber/jobs-stellenangebote",
     "focus": "Multi-Sector Recruitment with Dedicated Technical Desk",
-    "domains": ["Technical Management", "Facility Engineering", "Automation"],
+    "domains": [
+      "Technical Management",
+      "Facility Engineering",
+      "Automation"
+    ],
     "location": "Hamburg / Northern & Central Germany",
     "description": "Expert personnel management provider focusing on competence matching and long-term placement."
   },
@@ -195,7 +285,11 @@
     "url": "https://www.kellyservices.de",
     "careersUrl": "https://www.kellyservices.de/jobs",
     "focus": "Engineering, Science & High-Tech Workforce",
-    "domains": ["Biotech Engineering", "Process Development", "Semiconductors"],
+    "domains": [
+      "Biotech Engineering",
+      "Process Development",
+      "Semiconductors"
+    ],
     "location": "Hamburg, Munich, Frankfurt",
     "description": "Global recruitment pioneer specializing in precision engineering and high-tech sectors."
   },
@@ -205,7 +299,12 @@
     "url": "https://www.harveynash.com/de",
     "careersUrl": "https://www.harveynash.com/de/jobs",
     "focus": "Technology & Engineering Recruitment, Digital Leadership",
-    "domains": ["Software Architecture", "Cybersecurity", "Data Science", "Cloud Solutions"],
+    "domains": [
+      "Software Architecture",
+      "Cybersecurity",
+      "Data Science",
+      "Cloud Solutions"
+    ],
     "location": "Düsseldorf, Munich, Stuttgart",
     "description": "Global technology and engineering recruitment firm partnering with major German innovators."
   },
@@ -215,7 +314,12 @@
     "url": "https://www.progressiverecruitment.com",
     "careersUrl": "https://www.progressiverecruitment.com/de-de/stellenangebote",
     "focus": "Engineering, Automation, Green Energy & IT",
-    "domains": ["Automation", "Renewable Energy", "Process Automation", "Hardware/Embedded"],
+    "domains": [
+      "Automation",
+      "Renewable Energy",
+      "Process Automation",
+      "Hardware/Embedded"
+    ],
     "location": "Frankfurt, Munich, Hamburg, Düsseldorf",
     "description": "Specialist brand of SThree connecting engineers with future-forward industries across Germany."
   },
@@ -225,7 +329,11 @@
     "url": "https://www.actief.de",
     "careersUrl": "https://www.actief.de/jobsuche",
     "focus": "Technical & Industrial Personnel Solutions",
-    "domains": ["Mechanical Construction", "Electrical Systems", "Industrial Tech"],
+    "domains": [
+      "Mechanical Construction",
+      "Electrical Systems",
+      "Industrial Tech"
+    ],
     "location": "Karlsruhe / Southern & Western Germany",
     "description": "Dynamic staffing provider with strong regional integration in Germany's industrial heartlands."
   },
@@ -235,7 +343,12 @@
     "url": "https://www.horwood-koehler.com",
     "careersUrl": "https://www.horwood-koehler.com/careers",
     "focus": "Munich-based Science, Tech & Engineering Specialists",
-    "domains": ["Bavaria High-Tech", "Optics", "Robotics", "Systems Engineering"],
+    "domains": [
+      "Bavaria High-Tech",
+      "Optics",
+      "Robotics",
+      "Systems Engineering"
+    ],
     "location": "Munich / Southern Germany",
     "description": "Boutique executive search and engineering consultancy serving Southern Germany's tech corridor."
   },
@@ -245,7 +358,11 @@
     "url": "https://www.irc-germany.com",
     "careersUrl": "https://www.irc-germany.com/vacancies",
     "focus": "Munich Headhunting & International Technical Placement",
-    "domains": ["Specialist Relocation", "Senior Engineering", "International Recruitment"],
+    "domains": [
+      "Specialist Relocation",
+      "Senior Engineering",
+      "International Recruitment"
+    ],
     "location": "Munich / Bavaria",
     "description": "Experienced headhunting agency focused on cross-border technical talent placement."
   },
@@ -255,7 +372,12 @@
     "url": "https://ingenieure-international.de/en",
     "careersUrl": "https://ingenieure-international.de/en/job-offers",
     "focus": "Recruiting Foreign Engineers into Germany (Visas, Permits, Contracts)",
-    "domains": ["Skilled Worker Visa", "Chancenkarte", "Blue Card Placement", "Mechanical & IT"],
+    "domains": [
+      "Skilled Worker Visa",
+      "Chancenkarte",
+      "Blue Card Placement",
+      "Mechanical & IT"
+    ],
     "location": "Nationwide Germany",
     "description": "Specialized agency dedicated specifically to placing foreign engineers in Germany and navigating work permits."
   },
@@ -265,7 +387,12 @@
     "url": "https://www.etengo.de",
     "careersUrl": "https://www.etengo.de/projekt-jobs",
     "focus": "IT & Engineering Freelance Placement, Project Contracting",
-    "domains": ["Digital Engineering", "DevOps", "Software Engineering", "Enterprise Cloud"],
+    "domains": [
+      "Digital Engineering",
+      "DevOps",
+      "Software Engineering",
+      "Enterprise Cloud"
+    ],
     "location": "Mannheim / Nationwide",
     "description": "Premier digital staffing firm specializing in flexible engineering and IT freelance engagements."
   },
@@ -275,8 +402,94 @@
     "url": "https://www.homeofjobs.de",
     "careersUrl": "https://www.homeofjobs.de/stellenangebote",
     "focus": "Schleswig-Holstein & Northern Germany Technical Placements",
-    "domains": ["Northern Germany Industry", "Technical Services", "Engineering"],
+    "domains": [
+      "Northern Germany Industry",
+      "Technical Services",
+      "Engineering"
+    ],
     "location": "Kiel, Lübeck, Hamburg / Northern Germany",
     "description": "Regional specialist matching skilled engineers and technicians with Northern German employers."
+  },
+  {
+    "id": "solcom",
+    "name": "SOLCOM GmbH (Freelance & Contracting)",
+    "url": "https://www.solcom.de",
+    "domains": [
+      "Freelance Engineering",
+      "PLC & Automation",
+      "Contracting"
+    ],
+    "contactEmail": "freelance-engineering@solcom.de",
+    "type": "freelance"
+  },
+  {
+    "id": "computer-futures-freelance",
+    "name": "Computer Futures Germany (Freelance Desk)",
+    "url": "https://www.computerfutures.com/de-de",
+    "domains": [
+      "Freelance Controls",
+      "Embedded Systems",
+      "Contracting"
+    ],
+    "contactEmail": "freelance.automation@computerfutures.de",
+    "type": "freelance"
+  },
+  {
+    "id": "austin-fraser-contract",
+    "name": "Austin Fraser Germany (Contract & Freelance)",
+    "url": "https://www.austinfraser.com/de",
+    "domains": [
+      "Freelance Robotics",
+      "Mechatronics Projects",
+      "Contracting"
+    ],
+    "contactEmail": "contract-engineering@austinfraser.com",
+    "type": "freelance"
+  },
+  {
+    "id": "freelancermap-de",
+    "name": "Freelancermap Germany (Project Desk)",
+    "url": "https://www.freelancermap.de",
+    "domains": [
+      "Industrial Automation",
+      "SPS Freiberufler",
+      "Freelance Projects"
+    ],
+    "contactEmail": "projects@freelancermap.de",
+    "type": "freelance"
+  },
+  {
+    "id": "k2-partnering-freelance",
+    "name": "K2 Partnering Solutions (Freelance DACH)",
+    "url": "https://k2partnering.com",
+    "domains": [
+      "Mechatronics Consulting",
+      "Automation Freelancers",
+      "Contracting"
+    ],
+    "contactEmail": "freelance-dach@k2partnering.com",
+    "type": "freelance"
+  },
+  {
+    "id": "darwin-recruitment-freelance",
+    "name": "Darwin Recruitment (Germany Contracting)",
+    "url": "https://www.darwinrecruitment.com/de",
+    "domains": [
+      "Freelance Systems Integration",
+      "Contract Engineering"
+    ],
+    "contactEmail": "freelance-de@darwinrecruitment.com",
+    "type": "freelance"
+  },
+  {
+    "id": "real-staffing-freelance",
+    "name": "Real Staffing (Freelance Medical & Automation)",
+    "url": "https://www.realstaffing.com/de-de",
+    "domains": [
+      "Automation & Robotics",
+      "Freelance Quality / PLC"
+    ],
+    "contactEmail": "freelance-automation@realstaffing.de",
+    "type": "freelance"
   }
 ]

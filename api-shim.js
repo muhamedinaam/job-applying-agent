@@ -85,8 +85,9 @@
       const germanyCount = jobs.filter(j => j.countryCode === 'DE' || j.country === 'Germany').length;
       const sriLankaCount = jobs.filter(j => j.countryCode === 'LK' || j.country === 'Sri Lanka').length;
       const appliedCount = jobs.filter(j => j.status === 'applied').length;
+      const freelanceCount = jobs.filter(j => (j.workType && j.workType.includes('Freelance')) || (j.tags && j.tags.includes('Freelance'))).length;
       const readyCount = total - appliedCount;
-      return jsonResponse({ total, germanyCount, sriLankaCount, appliedCount, readyCount });
+      return jsonResponse({ total, germanyCount, sriLankaCount, appliedCount, readyCount, freelanceCount });
     }
 
     if (pathname === '/api/agencies') {
@@ -107,7 +108,8 @@
       const status = searchParams.get('status');
       const q = (searchParams.get('q') || '').toLowerCase();
 
-      if (country && country !== 'all') filtered = filtered.filter(j => j.countryCode === country);
+      if (country === 'freelance') filtered = filtered.filter(j => (j.workType && j.workType.includes('Freelance')) || (j.tags && j.tags.includes('Freelance')));
+      else if (country && country !== 'all') filtered = filtered.filter(j => j.countryCode === country);
       if (agency && agency !== 'all') filtered = filtered.filter(j => j.agencyId === agency);
       if (status && status !== 'all') filtered = filtered.filter(j => j.status === status);
       if (q) {

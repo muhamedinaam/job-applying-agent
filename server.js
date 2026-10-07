@@ -79,7 +79,9 @@ app.get('/api/jobs', (req, res) => {
   let jobs = readJson(JOBS_FILE, []);
 
   // Filter Country
-  if (country && country !== 'all') {
+  if (country === 'freelance') {
+    filtered = filtered.filter(j => (j.workType && j.workType.includes('Freelance')) || (j.tags && j.tags.includes('Freelance')));
+  } else if (country && country !== 'all') {
     if (country.toLowerCase() === 'de' || country.toLowerCase() === 'germany') {
       jobs = jobs.filter(j => j.countryCode === 'DE' || j.country === 'Germany');
     } else if (country.toLowerCase() === 'lk' || country.toLowerCase() === 'srilanka' || country.toLowerCase() === 'sri lanka') {
@@ -597,13 +599,15 @@ app.get('/api/stats', (req, res) => {
   const sriLankaCount = jobs.filter(j => j.countryCode === 'LK' || j.country === 'Sri Lanka').length;
   const appliedCount = jobs.filter(j => j.status === 'applied').length;
   const readyCount = total - appliedCount;
+  const freelanceCount = jobs.filter(j => (j.workType && j.workType.includes('Freelance')) || (j.tags && j.tags.includes('Freelance'))).length;
 
   res.json({
     total,
     germanyCount,
     sriLankaCount,
     appliedCount,
-    readyCount
+    readyCount,
+    freelanceCount
   });
 });
 

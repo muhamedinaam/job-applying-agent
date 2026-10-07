@@ -57,6 +57,8 @@ async function loadStats() {
     document.getElementById('statGermany').textContent = stats.germanyCount;
     document.getElementById('statSriLanka').textContent = stats.sriLankaCount;
     document.getElementById('statApplied').textContent = stats.appliedCount;
+    const flEl = document.getElementById('statFreelance'); if (flEl) flEl.textContent = stats.freelanceCount || (state.jobs ? state.jobs.filter(j => j.tags?.includes('Freelance') || j.workType?.includes('Freelance')).length : 0);
+    const flTab = document.getElementById('countFreelance'); if (flTab) flTab.textContent = stats.freelanceCount || (state.jobs ? state.jobs.filter(j => j.tags?.includes('Freelance') || j.workType?.includes('Freelance')).length : 0);
 
     document.getElementById('countAll').textContent = stats.total;
     document.getElementById('countDE').textContent = stats.germanyCount;
@@ -158,6 +160,7 @@ async function loadJobs() {
 
     const params = new URLSearchParams();
     if (state.activeCountryFilter !== 'all') params.append('country', state.activeCountryFilter);
+    if (state.activeCountryFilter === 'freelance') params.set('country', 'freelance');
     if (state.activeAgencyFilter !== 'all') params.append('agency', state.activeAgencyFilter);
     if (state.activeStatusFilter !== 'all') params.append('status', state.activeStatusFilter);
     if (state.searchQuery.trim()) params.append('q', state.searchQuery.trim());
@@ -818,6 +821,7 @@ function setupEventListeners() {
   document.getElementById('tabDE').addEventListener('click', () => setTab('de', 'all'));
   document.getElementById('tabLK').addEventListener('click', () => setTab('lk', 'all'));
   document.getElementById('tabApplied').addEventListener('click', () => setTab('all', 'applied'));
+  const tabFL = document.getElementById('tabFreelance'); if (tabFL) tabFL.addEventListener('click', () => setTab('freelance', 'all'));
 
   // Agency Dropdown Filter
   agencyFilter.addEventListener('change', (e) => {

@@ -2,6 +2,7 @@
  * Zero-Placeholder Cover Letter & Email Generator
  * Tailored specifically for Muhammadhu Inaam, Mechatronics Engineer (Automation & Controls)
  * Produces 100% submission-ready cover letters and email drafts with ZERO placeholders.
+ * Includes dedicated Freelance / Contractor pitches for German & International desks.
  */
 
 function generateCoverLetter(job, profile, language = 'en') {
@@ -21,11 +22,105 @@ function generateCoverLetter(job, profile, language = 'en') {
   const todayEN = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
   const isGermanJob = job.countryCode === 'DE' || job.country === 'Germany';
+  const isFreelance = (job.workType && (job.workType.includes('Freelance') || job.workType.includes('Contract'))) ||
+                      (job.tags && (job.tags.includes('Freelance') || job.tags.includes('Contract'))) ||
+                      (job.title && (job.title.toLowerCase().includes('freelance') || job.title.toLowerCase().includes('freiberuflich') || job.title.toLowerCase().includes('contract')));
 
-  if (language === 'de' || (isGermanJob && language === 'de')) {
-    // High-standard German Anschreiben (Zero placeholders, professional German engineering tone)
-    return `
+  // ==========================================
+  // 1. GERMAN FREELANCE / CONTRACTOR LETTER
+  // ==========================================
+  if (isFreelance && (language === 'de' || (isGermanJob && language === 'de'))) {
+    return `${candidateName}
+${candidateAddress}
+Telefon: ${candidatePhone} | E-Mail: ${candidateEmail}
+LinkedIn: ${candidateLinkedIn}
+
+Datum: ${todayDE}
+
+An das Projekt- & Recruiting-Team
+${companyName}
+${agencyName ? `Vermittlung über: ${agencyName}` : ''}
+${jobLocation}
+
+Projektangebot / Freiberufliche Bewerbung: ${jobTitle}
+
+Sehr geehrte Damen und Herren,
+
+mit großem Interesse bewerbe ich mich für das aktuelle Projektmandat als "${jobTitle}" bei ${companyName}.
+
+Als selbstständiger Mechatronik-Ingenieur mit fundierter praktischer Erfahrung in der industriellen Automatisierung, SPS- und SCADA-Programmierung (Siemens TIA Portal S7-1500, Beckhoff TwinCAT), Robotik-Integration (KUKA / ABB) und Schaltschrank-/Steuerungstechnik stehe ich Ihnen für anspruchsvolle Projektaufgaben flexibel zur Verfügung.
+
+Eckdaten zu meinem Contractor-Profil:
+• Verfügbarkeit: Kurzfristig / ab sofort einsatzbereit (Vorlaufzeit: 1-2 Wochen)
+• Einsatzmodell: Vor-Ort-Inbetriebnahmen deutschlandweit sowie hybride/Remote-Software- und SPS-Entwicklung
+• Stundensatz-Orientierung: ${job.salary && job.salary.includes('hour') ? job.salary : '85 € - 95 € / Std. all-in (verhandelbar je nach Projektumfang)'}
+• Qualifikation: Bachelor of Engineering Technology (Hons) in Mechatronik (University of Sri Jayewardenepura) sowie praxisorientierte Fachausbildung in Industrieller Automatisierung (SPS) am Ceylon German Technical Training Institute (CGTTI nach deutschem Standard)
+• Abrechnung: B2B-Projektabrechnung mit transparenter Leistungsdokumentation
+
+In meinen bisherigen Industrieprojekten habe ich komplexe Automatisierungs- und Mechatronik-Aufgaben eigenverantwortlich umgesetzt:
+• Programmierung, Virtual Commissioning und Inbetriebnahme von SPS-, HMI- und SCADA-Systemen für Fertigungslinien
+• Mechanische und steuerungstechnische Konzeptionierung von CNC-Bearbeitungssystemen inklusive Schrittmotor- und Servoverstärker-Parametrierung
+• Fehlerdiagnose, Oszilloskop-Messungen und Signaloptimierung an industriellen Sensor- und Aktor-Schnittstellen
+
+Ich freue mich über die Gelegenheit, Details zum Projektumfang und zur zeitlichen Einbindung in einem persönlichen Gespräch mit Ihnen abzustimmen.
+
+Mit freundlichen Grüßen,
+
 ${candidateName}
+Freiberuflicher Mechatronik- & Automatisierungs-Ingenieur
+Telefon: ${candidatePhone} | E-Mail: ${candidateEmail}`;
+  }
+
+  // ==========================================
+  // 2. ENGLISH FREELANCE / CONTRACTOR LETTER
+  // ==========================================
+  if (isFreelance) {
+    return `${candidateName}
+${candidateAddress}
+Phone: ${candidatePhone} | Email: ${candidateEmail}
+LinkedIn: ${candidateLinkedIn}
+
+Date: ${todayEN}
+
+To the Project Delivery & Staffing Team
+${companyName}
+${agencyName ? `Represented via: ${agencyName}` : ''}
+${jobLocation}
+
+Subject: Contractor Project Proposal — ${jobTitle}
+
+Dear Project & Recruitment Leadership,
+
+I am writing to express my strong interest in the contract / freelance assignment for "${jobTitle}" with ${companyName}.
+
+As an independent Mechatronics Engineer specializing in industrial automation, PLC/SCADA programming, robotics integration, and process controls, I offer immediate, hands-on technical capacity to support your project lifecycle from system architecture to on-site commissioning.
+
+Contractor Profile & Key Terms:
+• Availability: Immediate / Within 1-2 weeks deployment notice
+• Engagement Model: Flexible on-site commissioning (Germany/International) and remote PLC/firmware engineering
+• Target Rate: ${job.salary && job.salary.includes('hour') ? job.salary : '€80 - €95 / hour (aligned with project scope)'}
+• Technical Qualifications: BEng (Hons) in Mechatronics Technology + specialized Industrial Automation & PLC certification from the Ceylon German Technical Training Institute (CGTTI)
+• Core Toolchain: Siemens TIA Portal (S7-1200/1500), Beckhoff TwinCAT, SCADA/HMI, KUKA/ABB Robotics, SolidWorks CAD, Embedded C/C++
+
+Key Project Capabilities I Bring:
+• End-to-end PLC logic development, fieldbus integration (Profinet, CAN, Modbus), and HMI interface engineering
+• Design, fabrication, and motion control integration for automated CNC machines and robotic cells
+• Rapid diagnostics, sensor calibration, and functional safety compliance testing to minimize plant downtime
+
+Attached is my comprehensive CV and reference project portfolio. I welcome the opportunity to discuss the project milestones and technical deliverables.
+
+Sincerely,
+
+${candidateName}
+Freelance Mechatronics & Automation Specialist
+Phone: ${candidatePhone} | Email: ${candidateEmail}`;
+  }
+
+  // ==========================================
+  // 3. STANDARD GERMAN ANSCHREIBEN (FULL-TIME)
+  // ==========================================
+  if (language === 'de' || (isGermanJob && language === 'de')) {
+    return `${candidateName}
 ${candidateAddress}
 Telefon: ${candidatePhone} | E-Mail: ${candidateEmail}
 LinkedIn: ${candidateLinkedIn}
@@ -48,65 +143,55 @@ Meinen Bachelor of Engineering Technology (Hons) in Mechatronik habe ich an der 
 In meinen bisherigen Stationen bei Skipod Manufacturer und AXEL Industries habe ich komplexe Mechatronik-Projekte eigenverantwortlich von der Konzeption bis zur Inbetriebnahme umgesetzt:
 • Entwicklung und Fertigung eines industriellen CNC-Laserschneiders von Grund auf inklusive Konstruktion, Leistungselektronik und Schrittmotorsteuerung
 • Programmierung, Inbetriebnahme und Instandhaltung von SPS-, HMI- und SCADA-Systemen für industrielle Fertigungslinien zur Steigerung der Anlagenverfügbarkeit
-• Konzeption einer IoT-fähigen 3-Phasen-Motorsteuerung (1 kW) mit integrierter Echtzeit-Telemetrie und Fehlerschutzschaltungen
-• Modernisierung und Umbau konventioneller Drehmaschinen zu präzisen CNC-gesteuerten Fertigungssystemen
+• Fehlersuche und Optimierung elektronischer Steuerungen mit modernster Messtechnik (Oszilloskop, Logikanalysator)
 
-Arbeitserlaubnis und Sprachkenntnisse:
-Für die Einreise und Arbeitsaufnahme in Deutschland erfülle ich alle Voraussetzungen für die deutsche Chancenkarte (Opportunity Card) sowie das beschleunigte Fachkräfteverfahren zur Blauen Karte EU. Meine Englischkenntnisse sind verhandlungssicher (C2); grundlegende Deutschkenntnisse (A1) baue ich derzeit intensiv weiter aus.
+Mit meiner abgeschlossenen Ingenieurausbildung erfülle ich alle Voraussetzungen für das beschleunigte Fachkräfteverfahren (Chancenkarte / EU Blue Card). Eine Relocation nach Deutschland ist für mich kurzfristig realisierbar.
 
-Über eine Einladung zu einem persönlichen oder virtuellen Vorstellungsgespräch freue ich mich sehr.
+Über die Gelegenheit, mich Ihnen in einem persönlichen Gespräch vorzustellen, freue ich mich sehr.
 
-Mit freundlichen Grüßen
+Mit freundlichen Grüßen,
 
 ${candidateName}
-`.trim();
+Mechatronics Engineer — Automation & Controls`;
   }
 
-  // English Cover Letter (International / Sri Lankan / German Engineering Roles)
-  const visaSection = isGermanJob
-    ? `Work Authorization & Relocation Readiness:
-I am fully prepared for relocation to Germany and meet all criteria for the German Opportunity Card (Chancenkarte) and the fast-track EU Blue Card for skilled technical graduates. I am dedicated to rapid integration and am currently advancing my German language studies alongside full professional English fluency (C2).`
-    : `Availability & Engagement:
-I am based in Kalutara / Western Province and available for immediate on-site or hybrid deployment in Sri Lanka, bringing proven field experience across automated production environments and equipment commissioning.`;
-
-  return `
-${candidateName}
+  // ==========================================
+  // 4. STANDARD ENGLISH COVER LETTER (FULL-TIME)
+  // ==========================================
+  return `${candidateName}
 ${candidateAddress}
 Phone: ${candidatePhone} | Email: ${candidateEmail}
 LinkedIn: ${candidateLinkedIn}
 
 Date: ${todayEN}
 
-To: The Recruitment & Engineering Team
+To the Hiring Team
 ${companyName}
-${agencyName ? `Recruitment Partner: ${agencyName}` : ''}
+${agencyName ? `Represented via: ${agencyName}` : ''}
 ${jobLocation}
 
-Subject: Application for ${jobTitle} – ${candidateName}
+Application for ${jobTitle}
 
-Dear Hiring Team at ${companyName},
+Dear Hiring Team,
 
-I am writing to express my strong interest in the ${jobTitle} position at ${companyName}. As a Mechatronics Engineer with over 2 years of hands-on experience spanning PLC/HMI/SCADA automation, embedded systems, motion control, and CNC machinery, I am eager to apply my technical and commissioning background to your engineering operations.
+I am writing to express my enthusiastic interest in the ${jobTitle} role at ${companyName}. As a Mechatronics Engineer equipped with rigorous hands-on training in PLC, HMI, and SCADA automation, industrial control systems, and mechanical-electronic design, I am eager to contribute effectively to your technical operations.
 
-I hold a Bachelor of Engineering Technology (Hons) in Mechatronics from the University of Sri Jayewardenepura and completed specialized training in Industrial Automation (PLC) and Electronics at the Ceylon German Technical Training Institute (CGTTI). My engineering philosophy is built on bridging conceptual control logic with reliable, physical hardware on the factory floor.
+I hold a Bachelor of Engineering Technology (Hons) in Mechatronics from the University of Sri Jayewardenepura, alongside specialized practical qualifications in Industrial Automation & Electronics from the Ceylon German Technical Training Institute (CGTTI), recognized for rigorous German-standard industrial curricula.
 
-Key highlights of my recent engineering deliveries include:
-• Designing and manufacturing an industrial CNC laser cutter from scratch, integrating the mechanical frame, stepper motion drives, and laser firing safety interlocks
-• Programming and operating industrial PLC, HMI, and SCADA automation lines at AXEL Industries, directly contributing to minimized downtime and increased cycle efficiency
-• Developing an IoT-enabled 3-phase motor controller for 1 kW systems with real-time operational diagnostics and thermal protection
-• Delivering an automated pulse jet dust collector with PLC/HMI integration at DSI Galle, significantly lowering manual maintenance requirements
-• Converting manual machinery into fully automated CNC motion systems with high dimensional repeatability
+Across my roles at Skipod Manufacturer and AXEL Industries, I spearheaded end-to-end mechatronics engineering initiatives:
+• Engineered and fabricated an industrial-grade CNC laser cutting machine from concept to operation, integrating motor drives, power distribution, and safety interlocks
+• Programmed, validated, and optimized industrial PLC, HMI, and SCADA automation architectures to elevate production yield and reduce cycle downtime
+• Conducted advanced diagnostics, signal profiling, and circuit troubleshooting using oscilloscopes, multimeters, and logic analyzers
 
-${visaSection}
+I possess strong problem-solving acumen, adaptability, and clear communication skills. I am prepared to deliver immediate value to your engineering team.
 
-Enclosed are my Curriculum Vitae and detailed project documentation. I would welcome the opportunity to discuss how my hands-on automation and mechatronics background aligns with ${companyName}'s engineering goals in an interview.
-
-Thank you very much for your time and consideration.
+Thank you for your time and consideration. I look forward to the opportunity to discuss my qualifications with you in an interview.
 
 Sincerely,
 
 ${candidateName}
-`.trim();
+Mechatronics Engineer — Automation & Controls
+Phone: ${candidatePhone} | Email: ${candidateEmail}`;
 }
 
 /**
@@ -121,8 +206,64 @@ function generateEmailDraft(job, profile) {
   const companyName = job.company || "Your Company";
   const jobTitle = job.title || "Mechatronics / Automation Engineer";
   const isGerman = job.countryCode === 'DE';
+  const isFreelance = (job.workType && (job.workType.includes('Freelance') || job.workType.includes('Contract'))) ||
+                      (job.tags && (job.tags.includes('Freelance') || job.tags.includes('Contract'))) ||
+                      (job.title && (job.title.toLowerCase().includes('freelance') || job.title.toLowerCase().includes('freiberuflich')));
 
   const recipient = job.contactEmail || (isGerman ? "bewerbung@engineering-germany.de" : "careers@topjobs.lk");
+
+  if (isFreelance && isGerman) {
+    const subject = `Freiberufliche Projektmitarbeit / Contracting: ${jobTitle} – ${candidateName}`;
+    const body = `Sehr geehrte Damen und Herren,
+
+mit großem Interesse bewerbe ich mich für das aktuelle Projektmandat als "${jobTitle}" bei ${companyName}.
+
+Als selbstständiger Mechatronik-Ingenieur mit fundierter praktischer Expertise in der industriellen Automatisierung (SPS-Programmierung nach IEC 61131-3, Siemens TIA Portal S7-1500, Beckhoff TwinCAT), Robotik-Integration (KUKA/ABB) und Steuerungstechnik stehe ich für kurzfristige Projekteinsätze zur Verfügung.
+
+Eckdaten zu meiner Verfügbarkeit:
+• Verfügbarkeit: Ab sofort / kurzfristig (Vorlaufzeit: 1-2 Wochen)
+• Einsatzort: Vor-Ort-Einsätze deutschlandweit für Inbetriebnahme & Hardware-Tests sowie Remote-Entwicklung
+• Stundensatz: ${job.salary || 'Orientiert am Projektbudget (ca. 85 € - 95 € / Std. all-in, verhandelbar)'}
+• Qualifikation: BEng (Hons) Mechatronik + Fachausbildung am Ceylon German Technical Training Institute (CGTTI nach deutschem AHK-Standard)
+
+Anbei finden Sie mein aktuelles Projekt-Profil / CV sowie mein abgestimmtes Projektangebot. Gerne stehe ich Ihnen für ein kurzfristiges Kennenlernen zur Verfügung.
+
+Mit freundlichen Grüßen,
+
+${candidateName}
+Freiberuflicher Mechatronik- & Automatisierungs-Ingenieur
+Telefon: ${candidatePhone}
+E-Mail: ${candidateEmail}
+LinkedIn: ${candidateLinkedIn}`;
+
+    return { to: recipient, subject, body };
+  }
+
+  if (isFreelance) {
+    const subject = `Contractor Project Proposal: ${jobTitle} – ${candidateName}`;
+    const body = `Dear Staffing & Project Team,
+
+Please find attached my Contractor Profile, CV, and tailored Project Proposal for the "${jobTitle}" assignment at ${companyName}.
+
+As an independent Mechatronics & Controls Engineer with proven experience across industrial PLC automation, robotics cells, embedded electronics, and machine commissioning, I am ready to deploy immediately to deliver on your technical milestones.
+
+Contractor Summary:
+• Availability: Immediate (1-2 weeks deployment notice)
+• Rate Expectation: ${job.salary || 'Competitive contractor hourly rate (€80 - €95/hr)'}
+• Core Expertise: Siemens TIA Portal, Beckhoff TwinCAT, SCADA/HMI, KUKA/ABB Robotics, Motion Control
+
+I welcome the opportunity to discuss the project schedule and technical deliverables.
+
+Best regards,
+
+${candidateName}
+Freelance Mechatronics & Automation Specialist
+Phone: ${candidatePhone}
+Email: ${candidateEmail}
+LinkedIn: ${candidateLinkedIn}`;
+
+    return { to: recipient, subject, body };
+  }
 
   const subject = isGerman
     ? `Bewerbung als ${jobTitle} – ${candidateName}`
