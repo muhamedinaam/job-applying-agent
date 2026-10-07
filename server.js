@@ -80,12 +80,18 @@ app.get('/api/jobs', (req, res) => {
 
   // Filter Country
   if (country === 'freelance') {
-    filtered = filtered.filter(j => (j.workType && j.workType.includes('Freelance')) || (j.tags && j.tags.includes('Freelance')));
+    jobs = jobs.filter(j => 
+      (j.workType && (j.workType.toLowerCase().includes('freelance') || j.workType.toLowerCase().includes('contract'))) ||
+      (j.tags && j.tags.some(t => t.toLowerCase() === 'freelance' || t.toLowerCase() === 'contract'))
+    );
   } else if (country && country !== 'all') {
-    if (country.toLowerCase() === 'de' || country.toLowerCase() === 'germany') {
-      jobs = jobs.filter(j => j.countryCode === 'DE' || j.country === 'Germany');
-    } else if (country.toLowerCase() === 'lk' || country.toLowerCase() === 'srilanka' || country.toLowerCase() === 'sri lanka') {
-      jobs = jobs.filter(j => j.countryCode === 'LK' || j.country === 'Sri Lanka');
+    const c = country.toLowerCase();
+    if (c === 'de' || c === 'germany') {
+      jobs = jobs.filter(j => (j.countryCode && j.countryCode.toUpperCase() === 'DE') || (j.country && j.country.toLowerCase() === 'germany'));
+    } else if (c === 'lk' || c === 'srilanka' || c === 'sri lanka') {
+      jobs = jobs.filter(j => (j.countryCode && j.countryCode.toUpperCase() === 'LK') || (j.country && j.country.toLowerCase() === 'sri lanka'));
+    } else {
+      jobs = jobs.filter(j => (j.countryCode && j.countryCode.toLowerCase() === c) || (j.country && j.country.toLowerCase() === c));
     }
   }
 

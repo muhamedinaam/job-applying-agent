@@ -1088,6 +1088,7 @@ function setTab(country, status) {
     if (country === 'all') document.getElementById('tabAll').classList.add('active');
     else if (country === 'de') document.getElementById('tabDE').classList.add('active');
     else if (country === 'lk') document.getElementById('tabLK').classList.add('active');
+    else if (country === 'freelance') document.getElementById('tabFreelance')?.classList.add('active');
   }
 
   loadJobs();
