@@ -232,6 +232,53 @@
       return jsonResponse({ success: true, mailtoUrl });
     }
 
+    // Intercept CV downloads
+    const cvMatch = pathname.match(/^\/api\/profiles\/([^/]+)\/download-cv$/);
+    if (cvMatch) {
+      const countryKey = (cvMatch[1] || 'germany').toLowerCase();
+      const key = countryKey.includes('lanka') ? 'srilanka' : 'germany';
+      const cvObj = (window.AEROAPPLY_CVS && (window.AEROAPPLY_CVS[key] || window.AEROAPPLY_CVS[countryKey])) || window.AEROAPPLY_CVS?.germany;
+      if (cvObj && cvObj.base64) {
+        const byteChars = atob(cvObj.base64);
+        const byteNumbers = new Uint8Array(byteChars.length);
+        for (let i = 0; i < byteChars.length; i++) {
+          byteNumbers[i] = byteChars.charCodeAt(i);
+        }
+        return new Response(new Blob([byteNumbers], { type: 'application/pdf' }), {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': 'attachment; filename="' + (cvObj.filename || 'Candidate_CV.pdf') + '"'
+          }
+        });
+      }
+    }
+
+    // Intercept EML downloads
+    const emlMatch = pathname.match(/^\/api\/jobs\/([^/]+)\/eml$/);
+    if (emlMatch) {
+      const jobId = emlMatch[1];
+      const jobs = await getJobs();
+      const job = jobs.find(j => j.id === jobId) || {};
+      const boundary = '----=_NextPart_000_AeroApply_' + Date.now();
+      let eml = 'X-Unsent: 1\r\n';
+      eml += 'To: ' + (job.contactEmail || '') + '\r\n';
+      eml += 'From: Muhammadhu Inaam <mohamedinnam787@gmail.com>\r\n';
+      eml += 'Subject: Application: ' + (job.title || 'Engineer') + ' – Muhammadhu Inaam\r\n';
+      eml += 'Date: ' + (new Date().toUTCString()) + '\r\n';
+      eml += 'MIME-Version: 1.0\r\n';
+      eml += 'Content-Type: multipart/mixed; boundary="' + boundary + '"\r\n\r\n';
+      eml += '--' + boundary + '\r\nContent-Type: text/plain; charset="utf-8"\r\nContent-Transfer-Encoding: 8bit\r\n\r\n';
+      eml += 'Dear Hiring Team,\r\nPlease find attached my application documents.\r\n\r\n--' + boundary + '--\r\n';
+      return new Response(new Blob([eml], { type: 'message/rfc822' }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'message/rfc822',
+          'Content-Disposition': 'attachment; filename="Application_' + jobId + '.eml"'
+        }
+      });
+    }
+
     const pdfMatch = pathname.match(/^\/api\/jobs\/([^/]+)\/cover-letter\/pdf$/);
     if (pdfMatch) {
       const body = options.body ? JSON.parse(options.body) : {};
